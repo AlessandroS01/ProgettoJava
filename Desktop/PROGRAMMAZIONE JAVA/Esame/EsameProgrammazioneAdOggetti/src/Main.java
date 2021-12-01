@@ -6,5 +6,11 @@ public class Main {
 		System.out.println(15);
 		System.out.println("PORVAAAAAAAAAAAAAAA");
 		System.out.println("AIUTOOOOOOOOOOOOOOOOOOOOOO");
+		System.out.println("AAAAAAAAAAAAAAAa");
+		System.out.println("AAAAAAAAAAAAAAAa");
+		System.out.println("AAAAAAAAAAAAAAAa");
+		System.out.println("AAAAAAAAAAAAAAAa");
+		System.out.println("AAAAAAAAAAAAAAAa");
+		System.out.println("AAAAAAAAAAAAAAAa");
 	}
 }
