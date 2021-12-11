@@ -20,7 +20,7 @@ public class ApiCall {
 	
 	@RequestMapping ( value = "/getSeoul" , method = RequestMethod.GET)
 	public void getWeatherDaily ( @PathVariable ("Seoul") String city ) {
-		daily .StartConnectionDaily(city);
+		daily .StartConnectionDaily(city); 
 	}
 
 	
