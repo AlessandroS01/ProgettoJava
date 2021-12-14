@@ -12,8 +12,8 @@ import org.json.simple.*;
 
 
 public class StartConnectionURL {
-	// both are final because we don't have to change their values
-	private final String URL = "api.openweathermap.org/data/2.5/weather?";
+	// both are final because we should not change their values
+	private final String URL_daily = "api.openweathermap.org/data/2.5/weather?";
 	private final String Key = "ef3288292630c5a8c91c5b45de242182";
 	// variable used to open the Url in the following methods
 	/*private static HttpURLConnection connection;
@@ -28,7 +28,7 @@ public class StartConnectionURL {
 	public void StartConnectionDaily ( String city) {
 		
 		HttpClient client = HttpClient.newHttpClient ();
-		HttpRequest request = HttpRequest .newBuilder().uri(URI.create("http://" + URL + "q=" + city + "&appid" + Key)).build();
+		HttpRequest request = HttpRequest .newBuilder().uri(URI.create("http://" + URL_daily + "q=" + city + "&appid" + Key)).build();
 		client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
 			.thenApply(HttpResponse::body) // <----- this line is needed to catch the informations of the API
 			.thenApply(Parsing :: parse); 
