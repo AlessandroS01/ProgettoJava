@@ -2,38 +2,33 @@ package it.univpm.ProgettoOOP.Model;
 
 public class Time {
 	
-	private double giorno;
+	private String giorno;
 	
-	private	double ora;
+	private	int ora;
 	
-	private double minuti;
-	
-	private double secondi;
-	
-	
-	public Time(double giorno, double ora, double minuti, double secondi) {
-		this.giorno = giorno;
-		this.ora = ora;
-		this.minuti = minuti;
-		this.secondi = secondi;
-		}
+	private int minuti;
  
-	public double getGiorno() {
+	public String getGiorno() {
 			return giorno;
 	}
 	
-	public double getOra() {
+	public int getOra() {
 		return ora;
 	}
 	
-	public double getMinuti() {
+	public int getMinuti() {
 		return minuti;
 	}
 	
-	public double getSecondi() {
-		return secondi;
+	public void setGiorno( String giorno) {
+		this.giorno = giorno ;
 	}
 	
+	public void setOra ( int ora ) {
+		this.ora = ora ;
+	}
 	
-	
+	public void setMinuti ( int minuti ) {
+		this.minuti = minuti ;
+	}
 }

@@ -10,6 +10,6 @@ public interface MeteoInterface {
 	
 	public double getSpeedWind();
 	
-	public double getWindDegree();
+	public float getWindDegree();
 
 }

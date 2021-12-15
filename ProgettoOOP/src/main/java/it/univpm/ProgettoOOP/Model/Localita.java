@@ -2,14 +2,11 @@ package it.univpm.ProgettoOOP.Model;
 
 import java.util.ArrayList;
 
-//import com.example.ProgrammaJavaEsame.Meteo;
-//import com.example.ProgrammaJavaEsame.Time;
-
 public class Localita extends Meteo {
 	
 	private double coordinate;
 	
-	 private String state;
+	private String state;
 	
 	private String city;
 	

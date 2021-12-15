@@ -4,52 +4,61 @@ package it.univpm.ProgettoOOP.Model;
 
 public class Meteo implements MeteoInterface {
 	
-	double temp_min;
+	double tempMin;
 	
-	double temp_max;
+	double tempMax;
 	
-	double temp_now;
+	double tempNow;
 	
-	double wind_speed;
+	double windSpeed;
 	
-	double wind_degree;
+	float windDegree;
 	
 	@Override
 	public double getTemperatureMin() {
-		return temp_min;	
+		return tempMin;	
 	};
 
 	@Override
 	public double getTemperatureMax() {
-		return temp_max;
+		return tempMax;
 	};
 
 	@Override
 	public double getTemperatureNow() {
-		return temp_now;
+		return tempNow;
 	};
 
 	@Override
 	public double getSpeedWind() {
-		return wind_speed;
+		return windSpeed;
 	};
 
 	@Override
-	public double getWindDegree() {
-		return wind_degree;
+	public float getWindDegree() {
+		return windDegree;
 	};
     
 	public void setTemperatureMin(double tempMin) {
-      this.temp_min = tempMin - 273.15;
+      this.tempMin = tempMin - 273.15;
 	}
 	
 	public void setTemperatureMax(double tempMax) {
-		this.temp_max = tempMax - 273.15;
+		this.tempMax = tempMax - 273.15;
 	};
 	
-	public void setSpeedWind(double windSpeed) {
-		this.wind_speed = windSpeed;
+	public void setTemperatureNow(double tempNow) {
+		this.tempNow = tempNow - 273.15;
 	}
+	
+	public void setSpeedWind(double windSpeed) {
+		this.windSpeed = windSpeed;
+	}
+	
+	public void setWindDegree(float windDegree) {
+		this.windDegree = windDegree;
+	}
+	
 
 	
 	
