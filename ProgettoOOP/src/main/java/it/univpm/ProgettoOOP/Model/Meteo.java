@@ -2,7 +2,7 @@ package it.univpm.ProgettoOOP.Model;
 
 //import com.example.ProgrammaJavaEsame.Interfaccia_meteo;
 
-public class Meteo implements Interface {
+public class Meteo implements MeteoInterface {
 	
 	double temp_min;
 	
@@ -14,24 +14,27 @@ public class Meteo implements Interface {
 	
 	double wind_degree;
 	
-	public Meteo() {}; // costruttore di default
-    
+	@Override
 	public double getTemperatureMin() {
 		return temp_min;	
 	};
 
+	@Override
 	public double getTemperatureMax() {
 		return temp_max;
 	};
 
+	@Override
 	public double getTemperatureNow() {
 		return temp_now;
 	};
 
+	@Override
 	public double getSpeedWind() {
 		return wind_speed;
 	};
 
+	@Override
 	public double getWindDegree() {
 		return wind_degree;
 	};
@@ -46,7 +49,8 @@ public class Meteo implements Interface {
 	
 	public void setSpeedWind(double windSpeed) {
 		this.wind_speed = windSpeed;
-	};
+	}
+
 	
 	
 	

@@ -4,7 +4,7 @@ public class Time {
 	
 	private double giorno;
 	
-private	double ora;
+	private	double ora;
 	
 	private double minuti;
 	
@@ -18,19 +18,19 @@ private	double ora;
 		this.secondi = secondi;
 		}
  
-	public double get_Giorno() {
+	public double getGiorno() {
 			return giorno;
 	}
 	
-	public double get_Ora() {
+	public double getOra() {
 		return ora;
 	}
 	
-	public double get_Minuti() {
+	public double getMinuti() {
 		return minuti;
 	}
 	
-	public double get_Secondi() {
+	public double getSecondi() {
 		return secondi;
 	}
 	

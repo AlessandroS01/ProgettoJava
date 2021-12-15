@@ -25,15 +25,15 @@ public class Localita extends Meteo {
 		this.day = day;
 	}
 	
-	public double get_Coordinate() {
+	public double getCoordinate() {
 		return coordinate;
 	}
 	
-	public String get_State() {
+	public String getState() {
 		return state;
 	}
 	
-	public String get_City() {
+	public String getCity() {
 		return city;
 	}
 
