@@ -4,25 +4,30 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.concurrent.CompletableFuture;
+
+import it.univpm.ProgettoOOP.Model.Meteo;
 
 public class StartConnectionURLDaily extends StartConnectionURL{
 	
 	private final String urlDaily = "api.openweathermap.org/data/2.5/weather?";
 	
 	
-	/* 
-	   Method which opens up the API of OPENWEATHER about the current day.
-	   Through the use of @client i send an HttpRequest based on the URI
-	   written inside the brackets and the response is parsed inside the @Parsing class
-	   trough @parse method
+	/** 
+	*   Method which opens up the API of OPENWEATHER about the current day.
+	*   Through the use of @client i send an HttpRequest based on the URI
+	*   written inside the brackets and the response is parsed inside the @Parsing class
+	*   trough @parse method
 	*/
 	@Override
-	public void startConnection ( String city ) {
+	public Meteo startConnection ( String city ) {
 		HttpClient client = HttpClient.newHttpClient();
 		HttpRequest request = HttpRequest .newBuilder().uri(URI.create("http://" + urlDaily + "q=" + city + "&appid" + Key)).build();
-		client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-				.thenApply(HttpResponse::body); // <----- this line is needed to catch the informations of the API
-				//.thenApply(Parsing :: parse); 
+		HttpResponse response = (HttpResponse) client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+			//	.thenApply(HttpResponse::body); // <----- this line is needed to catch the informations of the API
+			//	.thenApply(Parsing :: parse); 
+		Parsing parse = new Parsing ();
+		return parse.parseWindTemp(response);
 	}
 	/*try {
 	// open up the URL and put what is written in the page

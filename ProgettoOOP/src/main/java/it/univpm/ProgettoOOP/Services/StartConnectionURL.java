@@ -9,21 +9,26 @@ import java.net.http.HttpResponse;
 
 import org.json.simple.*;
 
+import it.univpm.ProgettoOOP.Model.Meteo;
 
 
+/** This class is used as a model extended by :
+ *  @StartConnectionURLDaily 
+ *  @StartConnectionURL5Days
+ */
 public class StartConnectionURL {
-	// is final because we should not change its value
+	
+	/**
+	 * @param Key is used to generate the API.
+	 */
 	protected final String Key = "ef3288292630c5a8c91c5b45de242182";
 	
 
-	public void startConnection ( String city ) {
+	public Meteo startConnection ( String city ) {
+		return null;
 	}
-		
-		//return HttpRequest .newBuilder().uri(URI.create("http://" + url + "q=" + city + "&appid" + Key)).build();
-		
-		
-
-	}
+	
+}
 	
 	
 	

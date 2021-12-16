@@ -3,63 +3,53 @@ package it.univpm.ProgettoOOP.Model;
 //import com.example.ProgrammaJavaEsame.Interfaccia_meteo;
 
 public class Meteo implements MeteoInterface {
+	protected double windSpeed;
 	
-	double tempMin;
+	protected float windDegree;
 	
-	double tempMax;
 	
-	double tempNow;
-	
-	double windSpeed;
-	
-	float windDegree;
-	
-	@Override
-	public double getTemperatureMin() {
-		return tempMin;	
-	};
+	public Meteo( double windSpeed, float windDegree) {
+		this.windSpeed = windSpeed;
+		this.windDegree = windDegree;
+	}
 
-	@Override
-	public double getTemperatureMax() {
-		return tempMax;
-	};
 
-	@Override
-	public double getTemperatureNow() {
-		return tempNow;
-	};
 
-	@Override
-	public double getSpeedWind() {
+	public double getWindSpeed() {
 		return windSpeed;
-	};
+	}
 
-	@Override
-	public float getWindDegree() {
-		return windDegree;
-	};
-    
-	public void setTemperatureMin(double tempMin) {
-      this.tempMin = tempMin - 273.15;
-	}
-	
-	public void setTemperatureMax(double tempMax) {
-		this.tempMax = tempMax - 273.15;
-	};
-	
-	public void setTemperatureNow(double tempNow) {
-		this.tempNow = tempNow - 273.15;
-	}
-	
-	public void setSpeedWind(double windSpeed) {
+
+
+	public void setWindSpeed(double windSpeed) {
 		this.windSpeed = windSpeed;
 	}
-	
+
+
+
+	public float getWindDegree() {
+		return windDegree;
+	}
+
+
+
 	public void setWindDegree(float windDegree) {
 		this.windDegree = windDegree;
 	}
-	
 
+
+
+	@Override
+	public String toString() {
+		return "Meteo [windSpeed=" + windSpeed + ", windDegree=" + windDegree + "]";
+	}
+
+
+
+	
+	
+	
+	
 	
 	
 	
