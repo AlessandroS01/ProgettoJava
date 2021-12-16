@@ -25,4 +25,10 @@ public class ApiCall {
 	}
 */
 
+ /* public JSONArray returnWeather() throws JSONException {
+	  JSONArray weather = getWeather().getJSONArray(); // implementare metodo getWeather e inserire dentro json array variabile
+	  return weather;
+	  
+	  
+  }*/
 }
