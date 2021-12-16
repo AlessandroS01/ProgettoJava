@@ -10,13 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.univpm.ProgettoOOP.Model.Meteo;
 import it.univpm.ProgettoOOP.Services.StartConnectionURLDaily;
+
 import java.net.URL;
 import org.json.simple.*;
 
 @RestController
 public class ApiCall {
 	
-	@Autowired
+
+    @Autowired
 	
 	
 	@RequestMapping ( value = "/getAnconaDaily"  , method = RequestMethod.GET)
@@ -26,4 +28,10 @@ public class ApiCall {
 	}
 
 
+ /* public JSONArray returnWeather() throws JSONException {
+	  JSONArray weather = getWeather().getJSONArray(); // implementare metodo getWeather e inserire dentro json array variabile
+	  return weather;
+	  
+	  
+  }*/
 }

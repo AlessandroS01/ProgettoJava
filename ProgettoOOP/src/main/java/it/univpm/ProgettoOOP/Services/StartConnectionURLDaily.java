@@ -1,12 +1,12 @@
 package it.univpm.ProgettoOOP.Services;
 
+import java.net.MalformedURLException; // aggiunta per evitare errore sulla rixhiesta di malformed
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.concurrent.CompletableFuture;
-
 import it.univpm.ProgettoOOP.Model.Meteo;
+import java.io.*; // aggiunta per evitare errore su io exceptions
 
 public class StartConnectionURLDaily extends StartConnectionURL{
 	
@@ -30,6 +30,14 @@ public class StartConnectionURLDaily extends StartConnectionURL{
 		return parse.parseWindTemp(response);
 	}
 	/*try {
+	 * @manuel
+	 * response = client.newCall(request).execute();
+	 * return new JSONObject(response.body().string()); // metodo che ho trovato 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
 	// open up the URL and put what is written in the page
 	// in an inputStream
 	URL url = new URL (URL + "q=" + city + "&appid=" + Key);
@@ -56,6 +64,5 @@ public class StartConnectionURLDaily extends StartConnectionURL{
 	
 }
 */
-
 	
 }
