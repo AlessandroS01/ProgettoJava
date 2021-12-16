@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import it.univpm.ProgettoOOP.Services.StartConnectionURLDaily;
+
 import java.net.URL;
 import org.json.simple.*;
 
 @RestController
 public class ApiCall {
 	
-//	@Autowired
+// @Autowired
 	
 	
 /*	@RequestMapping ( value = "/getSeoul"  , method = RequestMethod.GET)

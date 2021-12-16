@@ -25,6 +25,13 @@ public class StartConnectionURLDaily extends StartConnectionURL{
 				//.thenApply(Parsing :: parse); 
 	}
 	/*try {
+	 * response = client.newCall(request).execute();
+	 * return new JSONObject(response.body().string()); // metodo che ho trovato
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
 	// open up the URL and put what is written in the page
 	// in an inputStream
 	URL url = new URL (URL + "q=" + city + "&appid=" + Key);
