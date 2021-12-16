@@ -5,30 +5,34 @@ import java.util.Map;
 
 import org.json.simple.*;
 
-import it.univpm.ProgettoOOP.Model.Localita;
-import it.univpm.ProgettoOOP.Model.Meteo;
+import it.univpm.ProgettoOOP.Model.Place;
+import it.univpm.ProgettoOOP.Model.Weather;
 
 
 public class Parsing {
 	
-	
 	/** 
 	*  Used to parse the response obtained through the HttpClient
 	*/
-	public Meteo parseWindTemp ( HttpResponse response) {
+	public Weather parseWindTemp ( HttpResponse response) {
 		JSONObject wind = (JSONObject) response.body();
 		wind . get("wind");
 		JSONObject sys = (JSONObject) response.body();
 		sys . get("sys");
-		Localita weather;
+		JSONObject weath = (JSONObject) response.body();
+		weath . get("weather");
+		Place weather;
 		
-		int speed = (int) wind.get("speed");
-		float degree = (float) wind.get("deg");
+		float speed = (int) wind.get("speed");
+		int degree = (int) wind.get("deg");
+		float gust = (float) wind.get("gust");
 		
 		String country = (String) sys.get("country");
 		String city = (String) sys.get("name");
 		
-		weather = new Localita ( speed, degree, country, city);
+		String main = (String) weath.get("main");
+		
+		weather = new Place (speed , degree, gust , main , country , city);
 		return weather ;
 	}
 	

@@ -12,7 +12,7 @@ import org.json.simple.JSONObject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import it.univpm.ProgettoOOP.Model.Meteo;
+import it.univpm.ProgettoOOP.Model.Weather;
 
 
 /**
@@ -32,7 +32,7 @@ public class StartConnectionURL5Days extends StartConnectionURL {
 	*/
 	
 	@Override
-	public Meteo startConnection ( String city) {
+	public Weather startConnection ( String city) {
 		HttpClient client = HttpClient.newHttpClient();
 		HttpRequest request = HttpRequest .newBuilder().uri(URI.create("http://" + url5Days + "q=" + city + "&appid" + Key)).build();
 		HttpResponse response = (HttpResponse) client.sendAsync(request, HttpResponse.BodyHandlers.ofString());

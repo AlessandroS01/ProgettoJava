@@ -3,9 +3,7 @@ package it.univpm.ProgettoOOP.Model;
 public class Time {
 	
 	private String giorno;
-	
 	private	int ora;
-	
 	private int minuti;
  
 	public String getGiorno() {

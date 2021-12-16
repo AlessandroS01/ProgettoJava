@@ -5,7 +5,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import it.univpm.ProgettoOOP.Model.Meteo;
+import it.univpm.ProgettoOOP.Model.Weather;
 import java.io.*; // aggiunta per evitare errore su io exceptions
 
 public class StartConnectionURLDaily extends StartConnectionURL{
@@ -20,7 +20,7 @@ public class StartConnectionURLDaily extends StartConnectionURL{
 	*   trough @parse method
 	*/
 	@Override
-	public Meteo startConnection ( String city ) {
+	public Weather startConnection ( String city ) {
 		HttpClient client = HttpClient.newHttpClient();
 		HttpRequest request = HttpRequest .newBuilder().uri(URI.create("http://" + urlDaily + "q=" + city + "&appid" + Key)).build();
 		HttpResponse response = (HttpResponse) client.sendAsync(request, HttpResponse.BodyHandlers.ofString());

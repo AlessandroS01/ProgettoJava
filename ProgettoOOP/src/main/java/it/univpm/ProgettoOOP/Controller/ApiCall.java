@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.univpm.ProgettoOOP.Model.Meteo;
+import it.univpm.ProgettoOOP.Model.Weather;
 import it.univpm.ProgettoOOP.Services.StartConnectionURLDaily;
 
 import java.net.URL;
@@ -18,13 +18,13 @@ import org.json.simple.*;
 public class ApiCall {
 	
 
-    @Autowired
+ @Autowired
 	
 	
 	@RequestMapping ( value = "/getAnconaDaily"  , method = RequestMethod.GET)
-	public ResponseEntity <Object> getWeather (){
+	public ResponseEntity <Object> getWeather ( @PathVariable ("Ancona") String city){
 		StartConnectionURLDaily start = new StartConnectionURLDaily();
-		return new ResponseEntity <>( start.startConnection( "Ancona") , HttpStatus.OK);
+		return new ResponseEntity <>( start.startConnection( city) , HttpStatus.OK);
 	}
 
 
