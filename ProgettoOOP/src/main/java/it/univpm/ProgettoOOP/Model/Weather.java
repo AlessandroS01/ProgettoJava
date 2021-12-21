@@ -2,7 +2,6 @@ package it.univpm.ProgettoOOP.Model;
 
 import java.sql.Date;
 
-//import com.example.ProgrammaJavaEsame.Interfaccia_meteo;
 
 public class Weather extends Wind{
 
@@ -14,6 +13,7 @@ public class Weather extends Wind{
 		this.weather = weather;
 	}
 
+	
 	public String getWeather() {
 		return weather;
 	}

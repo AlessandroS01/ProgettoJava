@@ -20,18 +20,23 @@ public class Wind extends Time{
 	public float getSpeed() {
 		return speed;
 	}
+	
 	public void setSpeed(float speed) {
 		this.speed = speed;
 	}
+	
 	public int getDegree() {
 		return degree;
 	}
+	
 	public void setDegree(int speedDegree) {
 		this.degree = speedDegree;
 	}
+	
 	public float getGust() {
 		return gust;
 	}
+	
 	public void setGust(float gust) {
 		this.gust = gust;
 	}

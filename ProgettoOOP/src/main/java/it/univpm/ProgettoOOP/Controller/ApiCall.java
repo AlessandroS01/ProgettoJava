@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.univpm.ProgettoOOP.Model.Place;
 import it.univpm.ProgettoOOP.Model.Weather;
+import it.univpm.ProgettoOOP.Services.Parsing;
 import it.univpm.ProgettoOOP.Services.StartConnectionURL5Days;
 import it.univpm.ProgettoOOP.Services.StartConnectionURLDaily;
 
@@ -25,9 +27,10 @@ public class ApiCall {
 	
 	
 	@RequestMapping ( value = "/getAncona5Days" , method = RequestMethod.GET )
-	public ResponseEntity <Object> getWeather5Days ( @RequestParam( defaultValue = "ancona" ) String city ){
-	 	StartConnectionURL5Days start = new StartConnectionURL5Days(city);
-		return new ResponseEntity <>( start.startConnection5Days() , HttpStatus.OK);
+	public Place getWeather5Days ( @RequestParam( defaultValue = "ancona" ) String city ){
+	 	StartConnectionURLDaily start = new StartConnectionURLDaily(city);
+		Parsing weatherDaily = new Parsing ();
+		return weatherDaily.parsingConnDaily(start.startConnectionDaily(), city);
 	}
 
 

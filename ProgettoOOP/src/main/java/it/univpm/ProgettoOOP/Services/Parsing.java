@@ -21,7 +21,6 @@ public class Parsing {
 	 * currentWeather API
 	 */
 	public Place parsingConnDaily( JSONObject obj , String city) {
-		Place weatherXPlaceDaily = null ;
 		
 		StartConnectionURLDaily daily = new StartConnectionURLDaily( city);
 		
@@ -47,12 +46,13 @@ public class Parsing {
 		Vector <Weather> weatVec = new Vector <Weather>();
 		weatVec.add(weatSupport);
 		
-		weatherXPlaceDaily = new Place ( state , nameCity , weatVec);
+		Place weatherXPlaceDaily = new Place ( state , nameCity , weatVec);
 		return weatherXPlaceDaily;
+		
 	}
 	
 	public Place parsingConn5Days( JSONObject obj , String city) {
-		
+		return null;
 	}
 	
 

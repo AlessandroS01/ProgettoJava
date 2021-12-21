@@ -16,6 +16,7 @@ public class Time {
 	public java.util.Date getTime() {
 		return time;
 	}
+	
 	public void setTime(Date time) {
 		this.time = time;
 	}
