@@ -1,17 +1,21 @@
 package it.univpm.ProgettoOOP.Model;
 
-public class Wind {
+import java.sql.Date;
+
+public class Wind extends Time{
 
 	protected float speed;
-	protected int speedDegree;
+	protected int degree;
 	protected float gust;
 	
 	
-	public Wind(float speed, int speedDegree, float gust) {
+	public Wind(java.util.Date time, float speed, int speedDegree, float gust) {
+		super(time);
 		this.speed = speed;
-		this.speedDegree = speedDegree;
+		this.degree = speedDegree;
 		this.gust = gust;
 	}
+	
 	
 	public float getSpeed() {
 		return speed;
@@ -19,11 +23,11 @@ public class Wind {
 	public void setSpeed(float speed) {
 		this.speed = speed;
 	}
-	public int getSpeedDegree() {
-		return speedDegree;
+	public int getDegree() {
+		return degree;
 	}
-	public void setSpeedDegree(int speedDegree) {
-		this.speedDegree = speedDegree;
+	public void setDegree(int speedDegree) {
+		this.degree = speedDegree;
 	}
 	public float getGust() {
 		return gust;

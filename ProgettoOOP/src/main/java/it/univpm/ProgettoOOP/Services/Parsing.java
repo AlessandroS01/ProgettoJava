@@ -2,38 +2,57 @@ package it.univpm.ProgettoOOP.Services;
 
 import java.net.http.HttpResponse;
 import java.util.Map;
+import java.util.Vector;
 
 import org.json.simple.*;
 
 import it.univpm.ProgettoOOP.Model.Place;
 import it.univpm.ProgettoOOP.Model.Weather;
 
-
+/**
+ * Class that parse and instantiate the values 
+ * written in the API in our model
+ */
 public class Parsing {
 	
-	/** 
-	*  Used to parse the response obtained through the HttpClient
-	*/
-	public Weather parseWindTemp ( HttpResponse response) {
-		JSONObject wind = (JSONObject) response.body();
-		wind . get("wind");
-		JSONObject sys = (JSONObject) response.body();
-		sys . get("sys");
-		JSONObject weath = (JSONObject) response.body();
-		weath . get("weather");
-		Place weather;
+	
+	/**
+	 * Method that parse the values written inside the
+	 * currentWeather API
+	 */
+	public Place parsingConnDaily( JSONObject obj , String city) {
+		Place weatherXPlaceDaily = null ;
 		
-		float speed = (int) wind.get("speed");
-		int degree = (int) wind.get("deg");
-		float gust = (float) wind.get("gust");
+		StartConnectionURLDaily daily = new StartConnectionURLDaily( city);
 		
-		String country = (String) sys.get("country");
-		String city = (String) sys.get("name");
+		JSONObject Obj = daily.startConnectionDaily();
+		JSONObject ObjWind = (JSONObject) Obj.get("wind");
+		JSONArray Arr = new JSONArray(); 
 		
-		String main = (String) weath.get("main");
+		Arr = (JSONArray) Obj.get("weather");
 		
-		weather = new Place (speed , degree, gust , main , country , city);
-		return weather ;
+		String state = (String) Obj.get("country");
+		String nameCity = (String) Obj.get("name");
+		
+		Long date = (Long) Obj.get("dt");
+		java.util.Date time = new java.util.Date((long)date*1000);
+		
+		float speed = (float) ObjWind.get("wind");
+		int deg = (int) ObjWind.get("deg");
+		float gust = (float) ObjWind.get("gust");
+		
+		String weather = (String) Arr.get(2);
+		
+		Weather weatSupport = new Weather ( time , speed , deg , gust , weather);
+		Vector <Weather> weatVec = new Vector <Weather>();
+		weatVec.add(weatSupport);
+		
+		weatherXPlaceDaily = new Place ( state , nameCity , weatVec);
+		return weatherXPlaceDaily;
+	}
+	
+	public Place parsingConn5Days( JSONObject obj , String city) {
+		
 	}
 	
 

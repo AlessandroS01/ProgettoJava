@@ -1,32 +1,25 @@
 package it.univpm.ProgettoOOP.Model;
 
+import java.sql.Date;
+
 public class Time {
 	
-	private String giorno;
-	private	int ora;
-	private int minuti;
- 
-	public String getGiorno() {
-			return giorno;
+	protected java.util.Date time;
+
+
+	public Time(java.util.Date time) {
+		super();
+		this.time = time;
 	}
+
+
+	public java.util.Date getTime() {
+		return time;
+	}
+	public void setTime(Date time) {
+		this.time = time;
+	}
+
 	
-	public int getOra() {
-		return ora;
-	}
 	
-	public int getMinuti() {
-		return minuti;
-	}
-	
-	public void setGiorno( String giorno) {
-		this.giorno = giorno ;
-	}
-	
-	public void setOra ( int ora ) {
-		this.ora = ora ;
-	}
-	
-	public void setMinuti ( int minuti ) {
-		this.minuti = minuti ;
-	}
 }

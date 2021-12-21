@@ -1,13 +1,16 @@
 package it.univpm.ProgettoOOP.Model;
 
+import java.sql.Date;
+
 //import com.example.ProgrammaJavaEsame.Interfaccia_meteo;
 
 public class Weather extends Wind{
 
 	protected String weather ;
 
-	public Weather(float speed, int speedDegree, float gust, String weather) {
-		super(speed, speedDegree, gust);
+	
+	public Weather(java.util.Date time, float speed, int degree, float gust, String weather) {
+		super(time, speed, degree, gust);
 		this.weather = weather;
 	}
 
