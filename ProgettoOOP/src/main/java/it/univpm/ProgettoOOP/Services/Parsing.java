@@ -1,6 +1,6 @@
 package it.univpm.ProgettoOOP.Services;
 import java.util.Timer;
-import java.util.TimerTask; // non so se utilizzarla
+import java.util.TimerTask; 
 
 import java.net.http.HttpResponse;
 import java.util.Map;
@@ -27,10 +27,10 @@ public class Parsing {
 		timer.schedule(new RemindTask(),3600000);
 	} 
 	class RemindTask extends TimerTask {
-  boolean time = true;
+  boolean time2 = true;
 		@Override
 		public void run() {
-		while(time) {
+		while(time2) {
 	         	StartConnectionURLDaily daily = new StartConnectionURLDaily("ancona");
 				
 				JSONObject Obj = daily.startConnectionDaily();
