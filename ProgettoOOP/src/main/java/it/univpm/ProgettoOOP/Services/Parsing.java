@@ -31,9 +31,7 @@ public class Parsing {
 		@Override
 		public void run() {
 		while(time) {
-			Place parsingConnDaily( JSONObject obj  String city) {
-				
-				StartConnectionURLDaily daily = new StartConnectionURLDaily( city);
+	         	StartConnectionURLDaily daily = new StartConnectionURLDaily("ancona");
 				
 				JSONObject Obj = daily.startConnectionDaily();
 				JSONObject ObjWind = (JSONObject) Obj.get("wind");
@@ -58,11 +56,13 @@ public class Parsing {
 				weatVec.add(weatSupport);
 				
 				Place weatherXPlaceDaily = new Place ( state , nameCity , weatVec);
-				return weatherXPlaceDaily; // hobisogno di un get qui
-				
+				 weatherXPlaceDaily.getCity(); 
+				 weatherXPlaceDaily.getWeatherXTime();
+				 weatherXPlaceDaily.getState();
+				 
 			}
 			
-			// quello che voglio sia soggetto al timer
+			
 			
 		}
 			
@@ -121,6 +121,6 @@ public class Parsing {
 	
 
 
-} */ }
+} */ 
    
    
