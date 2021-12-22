@@ -2,10 +2,17 @@ package it.univpm.ProgettoOOP.Services;
 
 import java.net.MalformedURLException; // aggiunta per evitare errore sulla rixhiesta di malformed
 import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+
+
+import org.json.simple.*;
+
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Request.Builder;
+import com.squareup.okhttp.Response;
+
 import it.univpm.ProgettoOOP.Model.Meteo;
+
 import java.io.*; // aggiunta per evitare errore su io exceptions
 
 public class StartConnectionURLDaily extends StartConnectionURL{
@@ -13,21 +20,24 @@ public class StartConnectionURLDaily extends StartConnectionURL{
 	private final String urlDaily = "api.openweathermap.org/data/2.5/weather?";
 	
 	
-	/** 
-	*   Method which opens up the API of OPENWEATHER about the current day.
-	*   Through the use of @client i send an HttpRequest based on the URI
-	*   written inside the brackets and the response is parsed inside the @Parsing class
-	*   trough @parse method
+	/* 
+	   Method which opens up the API of OPENWEATHER about the current day.
+	   Through the use of @client i send an HttpRequest based on the URI
+	   written inside the brackets and the response is parsed inside the @Parsing class
+	   trough @parse method
 	*/
-	@Override
-	public Meteo startConnection ( String city ) {
-		HttpClient client = HttpClient.newHttpClient();
-		HttpRequest request = HttpRequest .newBuilder().uri(URI.create("http://" + urlDaily + "q=" + city + "&appid" + Key)).build();
-		HttpResponse response = (HttpResponse) client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
-			//	.thenApply(HttpResponse::body); // <----- this line is needed to catch the informations of the API
-			//	.thenApply(Parsing :: parse); 
-		Parsing parse = new Parsing ();
-		return parse.parseWindTemp(response);
+	
+	public JSONObject startConnectionDaily ( String city )  {
+		OkHttpClient client = new OkHttpClient();
+	    Request request = new Request.Builder().url("http://" + urlDaily + "q=" + city + "&appid" + Key).build();
+		try {
+			Response response = client.newCall(request).execute();
+			return new JSONObject(response.body().string());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+				
+		return null;
 	}
 	/*try {
 	 * @manuel

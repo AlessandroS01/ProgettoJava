@@ -24,9 +24,9 @@ public class StartConnectionURL {
 	protected final String Key = "ef3288292630c5a8c91c5b45de242182";
 	
 
-	public Meteo startConnection ( String city ) {
-		return null;
-	}
+	public StartConnectionURL() {};
+		
+	
 	
 }
 	

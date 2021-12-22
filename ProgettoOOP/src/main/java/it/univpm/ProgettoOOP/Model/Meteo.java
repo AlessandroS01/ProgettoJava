@@ -15,6 +15,9 @@ public class Meteo implements MeteoInterface {
 
 
 
+	
+
+
 	public double getWindSpeed() {
 		return windSpeed;
 	}

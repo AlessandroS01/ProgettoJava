@@ -11,6 +11,7 @@ import java.net.http.HttpResponse;
 import org.json.simple.JSONObject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.squareup.okhttp.Response;
 
 import it.univpm.ProgettoOOP.Model.Meteo;
 
@@ -32,10 +33,10 @@ public class StartConnectionURL5Days extends StartConnectionURL {
 	*/
 	
 	@Override
-	public Meteo startConnection ( String city) {
+	public JSONObject startConnection ( String city) {
 		HttpClient client = HttpClient.newHttpClient();
 		HttpRequest request = HttpRequest .newBuilder().uri(URI.create("http://" + url5Days + "q=" + city + "&appid" + Key)).build();
-		HttpResponse response = (HttpResponse) client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+		Response response = (HttpResponse) client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
 		Parsing parse = new Parsing ();
 		return parse.parseWindTemp(response);
 		

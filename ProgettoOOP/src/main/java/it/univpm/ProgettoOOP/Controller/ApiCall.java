@@ -12,14 +12,16 @@ import it.univpm.ProgettoOOP.Model.Meteo;
 import it.univpm.ProgettoOOP.Services.StartConnectionURLDaily;
 
 import java.net.URL;
+
+import org.apache.catalina.connector.Response;
 import org.json.simple.*;
 
 @RestController
 public class ApiCall {
 	
-
     @Autowired
 	
+    
 	
 	@RequestMapping ( value = "/getAnconaDaily"  , method = RequestMethod.GET)
 	public ResponseEntity <Object> getWeather (){
