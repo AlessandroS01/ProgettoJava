@@ -2,7 +2,7 @@ package it.univpm.ProgettoOOP.Model;
 
 //import com.example.ProgrammaJavaEsame.Interfaccia_meteo;
 
-public class Meteo implements MeteoInterface {
+public class Meteo {
 	protected double windSpeed;
 	
 	protected float windDegree;

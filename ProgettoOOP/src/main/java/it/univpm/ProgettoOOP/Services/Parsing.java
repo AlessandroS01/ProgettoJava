@@ -1,37 +1,126 @@
 package it.univpm.ProgettoOOP.Services;
+import java.util.Timer;
+import java.util.TimerTask; // non so se utilizzarla
 
 import java.net.http.HttpResponse;
 import java.util.Map;
+import java.util.Vector;
 
 import org.json.simple.*;
 
-import it.univpm.ProgettoOOP.Model.Localita;
-import it.univpm.ProgettoOOP.Model.Meteo;
+import it.univpm.ProgettoOOP.Model.Place;
+import it.univpm.ProgettoOOP.Model.Weather;
 
-
+/**
+ * Class that parse and instantiate the values 
+ * written in the API in our model
+ */
 public class Parsing {
 	
 	
-	/** 
-	*  Used to parse the response obtained through the HttpClient
-	*/
-	public Meteo parseWindTemp ( HttpResponse response) {
-		JSONObject wind = (JSONObject) response.body();
-		wind . get("wind");
-		JSONObject sys = (JSONObject) response.body();
-		sys . get("sys");
-		Localita weather;
+	
+	Timer timer;
+	
+	
+	public Parsing() {
+		timer = new Timer();
+		timer.schedule(new RemindTask(),3600000);
+	} 
+	class RemindTask extends TimerTask {
+  boolean time = true;
+		@Override
+		public void run() {
+		while(time) {
+			Place parsingConnDaily( JSONObject obj  String city) {
+				
+				StartConnectionURLDaily daily = new StartConnectionURLDaily( city);
+				
+				JSONObject Obj = daily.startConnectionDaily();
+				JSONObject ObjWind = (JSONObject) Obj.get("wind");
+				JSONArray Arr = new JSONArray(); 
+				
+				Arr = (JSONArray) Obj.get("weather");
+				
+				String state = (String) Obj.get("country");
+				String nameCity = (String) Obj.get("name");
+				
+				Long date = (Long) Obj.get("dt");
+				java.util.Date time = new java.util.Date((long)date*1000);
+				
+				float speed = (float) ObjWind.get("wind");
+				int deg = (int) ObjWind.get("deg");
+				float gust = (float) ObjWind.get("gust");
+				
+				String weather = (String) Arr.get(2);
+				
+				Weather weatSupport = new Weather ( time , speed , deg , gust , weather);
+				Vector <Weather> weatVec = new Vector <Weather>();
+				weatVec.add(weatSupport);
+				
+				Place weatherXPlaceDaily = new Place ( state , nameCity , weatVec);
+				return weatherXPlaceDaily; // hobisogno di un get qui
+				
+			}
+			
+			// quello che voglio sia soggetto al timer
+			
+		}
+			
+			
+			
+		}
+		   
+		   
+	   }
+	/* 
+	 * 
+	 * timer.schedule(parsingConnDaily, 3600000); // esempio
+	 * 
+	 * 
+	 */
+	
+	/**
+	 * Method that parse the values written inside the
+	 * currentWeather API
+	 */
+/*	public Place parsingConnDaily( JSONObject obj , String city) {
 		
-		int speed = (int) wind.get("speed");
-		float degree = (float) wind.get("deg");
+		StartConnectionURLDaily daily = new StartConnectionURLDaily( city);
 		
-		String country = (String) sys.get("country");
-		String city = (String) sys.get("name");
+		JSONObject Obj = daily.startConnectionDaily();
+		JSONObject ObjWind = (JSONObject) Obj.get("wind");
+		JSONArray Arr = new JSONArray(); 
 		
-		weather = new Localita ( speed, degree, country, city);
-		return weather ;
+		Arr = (JSONArray) Obj.get("weather");
+		
+		String state = (String) Obj.get("country");
+		String nameCity = (String) Obj.get("name");
+		
+		Long date = (Long) Obj.get("dt");
+		java.util.Date time = new java.util.Date((long)date*1000);
+		
+		float speed = (float) ObjWind.get("wind");
+		int deg = (int) ObjWind.get("deg");
+		float gust = (float) ObjWind.get("gust");
+		
+		String weather = (String) Arr.get(2);
+		
+		Weather weatSupport = new Weather ( time , speed , deg , gust , weather);
+		Vector <Weather> weatVec = new Vector <Weather>();
+		weatVec.add(weatSupport);
+		
+		Place weatherXPlaceDaily = new Place ( state , nameCity , weatVec);
+		return weatherXPlaceDaily;
+		
 	}
+	
+	public Place parsingConn5Days( JSONObject obj , String city) {
+		return null;
+	}
+	
 	
 
 
-}
+} */ }
+   
+   
