@@ -19,11 +19,11 @@ import org.json.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
+
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
-import it.univpm.ProgettoOOP.Model.Weather;
 
 
 /**
@@ -35,46 +35,14 @@ public class StartConnectionURL5Days extends StartConnectionURL {
 	 * @param ulr5Days used to keep the initial part of the url
 	 */
 	private final String url5Days = "api.openweathermap.org/data/2.5/forecast?q=";
-
-
 	
-	/** 
-	   Method which opens up the API of OPENWEATHER about the 5 days incoming.
-	   Through the use of @client i send an HttpRequest based on the URI
-	   written inside the brackets and the response is parsed inside the @Parsing class
-	   trough @parse method
-	 * @return 
-	*/
-	
-/*	@Override
-	public JSONObject startConnection ( String city) {
-		HttpClient client = HttpClient.newHttpClient();
-		HttpRequest request = HttpRequest .newBuilder().uri(URI.create("http://" + url5Days + "q=" + city + "&appid" + Key)).build();
-		Response response = (HttpResponse) client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
-		Parsing parse = new Parsing ();
-		return parse.parseWindTemp(response);
-		
-		/**
-		   client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-				.thenApply(HttpResponse::body); // <----- this line is needed to catch the informations of the API
-		 
-				//.thenApply(Parsing :: parse);
-		
-		Parsing parse = new Parsing ();
-		return parse.parseWindTemp(response);
-		*/
-
 	/**
-	 * Constructor of the class
+	 * Constructor of StartConnectionURL5Days class
 	 */
 	public StartConnectionURL5Days(String cityName) {
 		super(cityName);
 	}
-	
-	
-	/**
-	 *
-	 */
+
 	public JSONObject startConnection5Days() {
 		String line = "";
 		JSONObject json = null;
@@ -82,7 +50,7 @@ public class StartConnectionURL5Days extends StartConnectionURL {
 		
 		URLConnection startConnection;
 		try {
-			startConnection = new URL(url5Days + getCityName() + "&units=metric&appid=" + Key).openConnection();
+			startConnection = new URL("https://" + url5Days + getCityName() + "&units=metric&appid=" + Key).openConnection();
 			InputStream in = startConnection.getInputStream();
 			
 			InputStreamReader reader = new InputStreamReader (in);
@@ -104,6 +72,11 @@ public class StartConnectionURL5Days extends StartConnectionURL {
 		return json;
 		
 	}
-		
+	
+	
+	/**
+	 * Creare metodo che scriva in un file di testo le informazioni della'API
+	 * di tipo forecast
+	 */
 }
 	

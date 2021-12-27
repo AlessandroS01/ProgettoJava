@@ -25,49 +25,28 @@ import org.json.simple.JSONValue;
 import it.univpm.ProgettoOOP.Model.Weather;
 import java.io.*; // aggiunta per evitare errore su io exceptions
 
-public class StartConnectionURLDaily extends StartConnectionURL{
+public class StartConnectionURLCurrent extends StartConnectionURL{
 	
 	/**
 	 * @param urlDaily used to keep the initial part of the url
 	 */
-	private final String urlDaily = "api.openweathermap.org/data/2.5/weather?q=";
+	private final String urlCurrent = "api.openweathermap.org/data/2.5/weather?q=";
 	
-
-	
-	/* 
-	   Method which opens up the API of OPENWEATHER about the current day.
-	   Through the use of @client i send an HttpRequest based on the URI
-	   written inside the brackets and the response is parsed inside the @Parsing class
-	   trough @parse method
-	*/
-	
-	/*public JSONObject startConnectionDaily ( String city )  {
-		OkHttpClient client = new OkHttpClient();
-	    Request request = new Request.Builder().url("http://" + urlDaily + "q=" + city + "&appid" + Key).build();
-		try {
-			Response response = client.newCall(request).execute();
-			return new JSONObject(response.body().string());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-				
-		return null;*/
-
 	/**
 	 * Constructor of the class
 	 */
-	public StartConnectionURLDaily(String cityName) {
+	public StartConnectionURLCurrent(String cityName) {
 		super(cityName);
 	}
 	
-	public JSONObject startConnectionDaily() {
+	public JSONObject startCurrentConnection() {
 		String line = "";
 		JSONObject json = null;
 		String filter = "";
 		
 		URLConnection startConnection;
 		try {
-			startConnection = new URL(urlDaily + getCityName() + "&units=metric&appid=" + Key).openConnection();
+			startConnection = new URL("https://" + urlCurrent + getCityName() + "&units=metric&appid=" + Key).openConnection();
 			InputStream in = startConnection.getInputStream();
 			
 			InputStreamReader reader = new InputStreamReader (in);

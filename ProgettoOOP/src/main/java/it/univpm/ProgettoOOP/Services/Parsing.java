@@ -15,6 +15,7 @@ import it.univpm.ProgettoOOP.Model.Weather;
  * written in the API in our model
  */
 
+
 		
 		
 	         	
@@ -27,17 +28,22 @@ import it.univpm.ProgettoOOP.Model.Weather;
 	 * 
 	 * 
 	 */
+
+
+	
 	
 	/**
 	 * Method that parse the values written inside the
 	 * currentWeather API
 	 */
 	 public class Parsing {
-     public Place parsingConnDaily( JSONObject obj , String city) {
+   
+
+	public Place parsingConnDaily( JSONObject obj , String city) {
 		
-		StartConnectionURLDaily daily = new StartConnectionURLDaily( city);
+		StartConnectionURLCurrent daily = new StartConnectionURLCurrent( city);
 		
-		JSONObject Obj = daily.startConnectionDaily();
+		JSONObject Obj = daily.startCurrentConnection();
 		JSONObject ObjWind = (JSONObject) Obj.get("wind");
 		JSONArray Arr = new JSONArray(); 
 		
@@ -55,15 +61,14 @@ import it.univpm.ProgettoOOP.Model.Weather;
 		
 		String weather = (String) Arr.get(2);
 		
-		Weather weatSupport = new Weather ( time , speed , deg , gust , weather);
-		Vector <Weather> weatVec = new Vector <Weather>();
-		weatVec.add(weatSupport);
+		Weather weat = new Weather ( time , speed , deg , gust , weather);
 		
-		Place weatherXPlaceDaily = new Place ( state , nameCity , weatVec);
+		Place weatherXPlaceDaily = new Place ( state , nameCity , weat);
 		return weatherXPlaceDaily;
 		
-	}
+		}
 	
+
 	public Place parsingConn5Days( JSONObject obj , String city) {
 		return null;
 	}
@@ -73,4 +78,7 @@ import it.univpm.ProgettoOOP.Model.Weather;
 
 } 
   
+
+
+   
    
