@@ -36,11 +36,22 @@ public class ApiCall {
 		return startForecast.startConnection5Days();
 	}
 	
-	@GetMapping ( "/writer")
+	@GetMapping ( "/writerCurrentDay")
 	public String writer() {
 		WriteLocalFile write = new WriteLocalFile();
 		try {
-			write.WriteOnLocalFile();
+			write.WriteOnLocalFileHour();
+		} catch (WrongFileException e) {
+			return e.sendMessage();
+		}
+		return "Caricamento completato";
+	}
+	
+	@GetMapping ( "/writerForecast")
+	public String writerForecast() {
+		WriteLocalFile write = new WriteLocalFile();
+		try {
+			write.WriteOnLocalFileForecast();
 		} catch (WrongFileException e) {
 			return e.sendMessage();
 		}
