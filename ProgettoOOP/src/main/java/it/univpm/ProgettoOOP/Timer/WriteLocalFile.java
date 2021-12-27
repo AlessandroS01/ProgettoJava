@@ -30,16 +30,14 @@ public class WriteLocalFile {
 		Timer timer = new Timer();	
 		
 		TimerTask taskCurrent = new TimerTask() {
-
 			@Override
 			public void run() {
-				File file = new File (path);
+				File file = new File( path);
 				if (file.exists()) {
 					connection.startCurrentConnection();
 					try {
 						writer = new FileWriter(file);
 						writer.write(connection.startCurrentConnection().toJSONString());
-						writer.write('\n');
 						writer.close();
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -47,7 +45,7 @@ public class WriteLocalFile {
 				}
 			}
 		};
-		timer.scheduleAtFixedRate(taskCurrent, 0, 3600000);
+		timer.scheduleAtFixedRate(taskCurrent, 0, 10000);
 	}
 	
 	

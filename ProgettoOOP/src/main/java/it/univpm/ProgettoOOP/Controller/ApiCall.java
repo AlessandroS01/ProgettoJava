@@ -36,7 +36,7 @@ public class ApiCall {
 		return startForecast.startConnection5Days();
 	}
 	
-	@GetMapping ( "/writerCurrentDay")
+	@GetMapping ( "/writerCurrentHour")
 	public String writer() {
 		WriteLocalFile write = new WriteLocalFile();
 		try {
