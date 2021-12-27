@@ -10,35 +10,41 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.univpm.ProgettoOOP.Exception.WrongFileException;
 import it.univpm.ProgettoOOP.Model.Place;
 import it.univpm.ProgettoOOP.Model.Weather;
-import it.univpm.ProgettoOOP.Services.Parsing;
 import it.univpm.ProgettoOOP.Services.StartConnectionURL5Days;
-import it.univpm.ProgettoOOP.Services.StartConnectionURLDaily;
+import it.univpm.ProgettoOOP.Services.StartConnectionURLCurrent;
+import it.univpm.ProgettoOOP.Timer.WriteLocalFile;
 
-import java.net.URL;
-
-import org.apache.catalina.connector.Response;
 import org.json.simple.*;
 
 @RestController
 public class ApiCall {
 	
 
-    
-
-
- @Autowired
- 
-	
-    
-	
-	@RequestMapping ( value = "/getAncona5Days" , method = RequestMethod.GET )
-	public Place getCurrentWeather ( @RequestParam( name = "ancona" , defaultValue = "ancona" ) String city ){
-	 	StartConnectionURLDaily start = new StartConnectionURLDaily(city);
-		Parsing weatherDaily = new Parsing ();
-		return weatherDaily.parsingConnDaily(start.startConnectionDaily(), city);
+	@GetMapping ( "/getCurrentAncona" )
+	public JSONObject getCurrentWeather (){
+		StartConnectionURLCurrent start = new StartConnectionURLCurrent("ancona");
+		return start.startCurrentConnection();
 	}
 
-
+	
+	@GetMapping ( "/getAncona5Days" )
+	public JSONObject getWeather5Days () {
+		StartConnectionURL5Days startForecast = new StartConnectionURL5Days("ancona");
+		return startForecast.startConnection5Days();
+	}
+	
+	@GetMapping ( "/writer")
+	public String writer() {
+		WriteLocalFile write = new WriteLocalFile();
+		try {
+			write.WriteOnLocalFile();
+		} catch (WrongFileException e) {
+			return e.sendMessage();
+		}
+		return "Caricamento completato";
+	}
+	
 }

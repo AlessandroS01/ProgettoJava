@@ -6,10 +6,10 @@ public class Place {
 	
 	private String state;
 	private String city;
-	private Vector <Weather> weatherXTime;
+	private Weather weatherXTime;
 
 
-	public Place(String state, String city, Vector<Weather> weatherXTime) {
+	public Place(String state, String city, Weather weatherXTime) {
 		super();
 		this.state = state;
 		this.city = city;
@@ -33,11 +33,11 @@ public class Place {
 		this.city = city;
 	}
 	
-	public Vector<Weather> getWeatherXTime() {
+	public Weather getWeatherXTime() {
 		return weatherXTime;
 	}
 	
-	public void setWeatherXTime(Vector<Weather> weatherXTime) {
+	public void setWeatherXTime(Weather weatherXTime) {
 		this.weatherXTime = weatherXTime;
 	}
 
