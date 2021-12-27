@@ -17,14 +17,21 @@ import it.univpm.ProgettoOOP.Services.StartConnectionURL5Days;
 import it.univpm.ProgettoOOP.Services.StartConnectionURLDaily;
 
 import java.net.URL;
+
+import org.apache.catalina.connector.Response;
 import org.json.simple.*;
 
 @RestController
 public class ApiCall {
 	
 
+    
+
+
  @Autowired
+ 
 	
+    
 	
 	@RequestMapping ( value = "/getAncona5Days" , method = RequestMethod.GET )
 	public Place getCurrentWeather ( @RequestParam( name = "ancona" , defaultValue = "ancona" ) String city ){

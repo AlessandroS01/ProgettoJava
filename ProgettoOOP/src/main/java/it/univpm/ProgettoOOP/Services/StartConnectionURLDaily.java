@@ -2,6 +2,19 @@ package it.univpm.ProgettoOOP.Services;
 
 import java.net.MalformedURLException; //
 import java.net.URI;
+
+
+
+import org.json.simple.*;
+
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Request.Builder;
+import com.squareup.okhttp.Response;
+
+import it.univpm.ProgettoOOP.Model.Meteo;
+
+
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.http.HttpClient;
@@ -19,6 +32,27 @@ public class StartConnectionURLDaily extends StartConnectionURL{
 	 */
 	private final String urlDaily = "api.openweathermap.org/data/2.5/weather?q=";
 	
+
+	
+	/* 
+	   Method which opens up the API of OPENWEATHER about the current day.
+	   Through the use of @client i send an HttpRequest based on the URI
+	   written inside the brackets and the response is parsed inside the @Parsing class
+	   trough @parse method
+	*/
+	
+	/*public JSONObject startConnectionDaily ( String city )  {
+		OkHttpClient client = new OkHttpClient();
+	    Request request = new Request.Builder().url("http://" + urlDaily + "q=" + city + "&appid" + Key).build();
+		try {
+			Response response = client.newCall(request).execute();
+			return new JSONObject(response.body().string());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+				
+		return null;*/
+
 	/**
 	 * Constructor of the class
 	 */

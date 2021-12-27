@@ -27,6 +27,12 @@ public class StartConnectionURL {
 	protected final String Key = "ef3288292630c5a8c91c5b45de242182";
 	protected String cityName;
 	
+
+
+	public StartConnectionURL() {};
+		
+	
+
 	
 	public StartConnectionURL(String cityName) {
 		this.cityName = cityName;
