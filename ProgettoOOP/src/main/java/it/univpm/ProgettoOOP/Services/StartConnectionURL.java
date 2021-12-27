@@ -1,6 +1,7 @@
 package it.univpm.ProgettoOOP.Services;
 
-
+import java.util.Timer;
+import java.util.TimerTask;
 import java.io.*;
 import java.net.*;
 import java.net.http.HttpClient;
@@ -11,12 +12,34 @@ import org.json.simple.*;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Response;
 
+
+
 import org.json.*;
 
 
 /** This class is used as a model extended by :
  *  @StartConnectionURLDaily 
  *  @StartConnectionURL5Days
+ */
+
+/* public class nomeclasse {
+	
+	
+	
+	Timer timer;
+	
+	
+	public StartConnectionURL() {
+		timer = new Timer();
+		timer.schedule(new RemindTask(),3600000);
+	} 
+	class RemindTask extends TimerTask {
+  boolean time2 = true;
+ * public void run() {
+		while(time2) {
+ * }
+ * 
+ * 
  */
 public class StartConnectionURL {
 	

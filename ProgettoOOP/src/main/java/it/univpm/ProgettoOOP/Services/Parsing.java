@@ -1,6 +1,5 @@
 package it.univpm.ProgettoOOP.Services;
-import java.util.Timer;
-import java.util.TimerTask; 
+ 
 
 import java.net.http.HttpResponse;
 import java.util.Map;
@@ -15,13 +14,31 @@ import it.univpm.ProgettoOOP.Model.Weather;
  * Class that parse and instantiate the values 
  * written in the API in our model
  */
-public class Parsing {
+
+
+		
+		
+	         	
+		   
+		   
+	   
+	/* 
+	 * 
+	 * timer.schedule(parsingConnDaily, 3600000); // esempio
+	 * 
+	 * 
+	 */
+
+
 	
 	
 	/**
 	 * Method that parse the values written inside the
 	 * currentWeather API
 	 */
+	 public class Parsing {
+   
+
 	public Place parsingConnDaily( JSONObject obj , String city) {
 		
 		StartConnectionURLCurrent daily = new StartConnectionURLCurrent( city);
@@ -51,6 +68,17 @@ public class Parsing {
 		
 		}
 	
+
+	public Place parsingConn5Days( JSONObject obj , String city) {
+		return null;
+	}
+	
+	
+
+
 } 
+  
+
+
    
    
