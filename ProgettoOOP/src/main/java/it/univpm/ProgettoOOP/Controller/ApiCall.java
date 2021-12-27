@@ -27,7 +27,7 @@ public class ApiCall {
 	
 	
 	@RequestMapping ( value = "/getAncona5Days" , method = RequestMethod.GET )
-	public Place getWeather5Days ( @RequestParam( defaultValue = "ancona" ) String city ){
+	public Place getCurrentWeather ( @RequestParam( name = "ancona" , defaultValue = "ancona" ) String city ){
 	 	StartConnectionURLDaily start = new StartConnectionURLDaily(city);
 		Parsing weatherDaily = new Parsing ();
 		return weatherDaily.parsingConnDaily(start.startConnectionDaily(), city);
