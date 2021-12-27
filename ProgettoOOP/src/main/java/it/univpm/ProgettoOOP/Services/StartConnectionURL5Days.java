@@ -17,11 +17,10 @@ import org.apache.tomcat.util.json.JSONParser;
 import org.apache.tomcat.util.json.ParseException;
 import org.json.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
-<<<<<<< HEAD
-=======
+
+
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
->>>>>>> branch 'master' of https://github.com/AlessandroS01/ProgettoJava.git
 import com.squareup.okhttp.Response;
 
 import it.univpm.ProgettoOOP.Model.Weather;
