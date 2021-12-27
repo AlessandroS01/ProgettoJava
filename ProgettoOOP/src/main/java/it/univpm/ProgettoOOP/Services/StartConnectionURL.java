@@ -17,30 +17,6 @@ import com.squareup.okhttp.Response;
 import org.json.*;
 
 
-/** This class is used as a model extended by :
- *  @StartConnectionURLDaily 
- *  @StartConnectionURL5Days
- */
-
-/* public class nomeclasse {
-	
-	
-	
-	Timer timer;
-	
-	
-	public StartConnectionURL() {
-		timer = new Timer();
-		timer.schedule(new RemindTask(),3600000);
-	} 
-	class RemindTask extends TimerTask {
-  boolean time2 = true;
- * public void run() {
-		while(time2) {
- * }
- * 
- * 
- */
 public class StartConnectionURL {
 	
 	/**
