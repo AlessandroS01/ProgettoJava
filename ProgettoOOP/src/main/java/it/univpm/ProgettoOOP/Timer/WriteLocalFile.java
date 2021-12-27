@@ -18,8 +18,8 @@ public class WriteLocalFile {
 	private StartConnectionURL5Days connectionForecast = new StartConnectionURL5Days("ancona");
 	private FileWriter writer;
 	private BufferedWriter buffWriter;
-	private String path = "C:\\Users\\Lenovo\\git\\repository4\\ProgettoOOP\\src\\main\\resources\\ApiCallsByTime";
-	private String pathForecast = "C:\\Users\\Lenovo\\git\\repository4\\ProgettoOOP\\src\\main\\resources\\ApiForecast";
+	private String path = "C:\\Users\\manue\\Desktop\\demoprogettojava\\ProgettoJava2\\ProgettoOOP\\src\\main\\resources\\ApiCallsByTime";
+	private String pathForecast = "C:\\Users\\manue\\Desktop\\demoprogettojava\\ProgettoJava2\\ProgettoOOP\\src\\main\\resources\\ApiCallsByTime";
 	
 	
 	/**
@@ -63,23 +63,27 @@ public class WriteLocalFile {
 		
 		TimerTask taskCurrent = new TimerTask() {
 
-			@Override
+	
 			public void run() {
+			
 				File file = new File (pathForecast);
-				if (file.exists()) {
-					connectionForecast.startConnection5Days();
 					try {
-						writer = new FileWriter(file);
+						if (!file.exists()) {
+						file.createNewFile();
+						}
+					    connectionForecast.startConnection5Days();
+					    writer = new FileWriter(file, true);
 						writer.write(connectionForecast.startConnection5Days().toJSONString());
 						writer.write('\n');
-						writer.close();
+						
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
 				}
-			}
+			
+			
 		};
-		timerForecast.schedule(taskCurrent, 0);	
+		timerForecast.schedule(taskCurrent, 10000);
 	}
 	
 	

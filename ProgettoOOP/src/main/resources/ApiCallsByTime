@@ -1,0 +1,3 @@
+
+{"visibility":6000,"timezone":3600,"main":{"temp":8.41,"temp_min":7.12,"humidity":94,"pressure":1009,"feels_like":8.41,"temp_max":13.8},"clouds":{"all":75},"sys":{"country":"IT","sunrise":1640587178,"sunset":1640619418,"id":2008011,"type":2},"dt":1640615578,"coord":{"lon":13.1667,"lat":43.55},"weather":[{"icon":"04d","description":"broken clouds","main":"Clouds","id":803}],"name":"Provincia di Ancona","cod":200,"id":3183087,"base":"stations","wind":{"deg":50,"speed":1.03}}
+
