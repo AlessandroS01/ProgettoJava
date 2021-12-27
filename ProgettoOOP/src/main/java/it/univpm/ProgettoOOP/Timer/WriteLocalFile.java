@@ -81,6 +81,7 @@ public class WriteLocalFile {
 					}
 				}
 			
+			
 		};
 		timerForecast.schedule(taskCurrent, 10000);
 	}
