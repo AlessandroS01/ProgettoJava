@@ -15,6 +15,7 @@ import it.univpm.ProgettoOOP.Model.Place;
 import it.univpm.ProgettoOOP.Model.Weather;
 import it.univpm.ProgettoOOP.Services.StartConnectionURL5Days;
 import it.univpm.ProgettoOOP.Services.StartConnectionURLCurrent;
+import it.univpm.ProgettoOOP.Statistics.FillingModel;
 import it.univpm.ProgettoOOP.Timer.WriteLocalFile;
 
 import org.json.simple.*;
@@ -76,6 +77,22 @@ public class ApiCall {
 			return e.sendMessage();
 		}
 		return "Caricamento completato";
+	}
+	
+	
+	
+	@GetMapping("/ciao")
+	public String ciao() {
+		FillingModel c= new FillingModel();
+		try{
+			c.fillPlaceCurrent();
+		}catch(Exception e) {
+			return "ciao";
+		}
+		if ( c.getPlaceCurrent() == null) {
+			return "ciao";
+		}
+		return "aiuto";
 	}
 	
 }

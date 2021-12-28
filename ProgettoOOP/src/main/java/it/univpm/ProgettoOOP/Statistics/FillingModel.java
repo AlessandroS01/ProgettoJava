@@ -16,7 +16,7 @@ import java.io.IOException;
 
 
 
-public class FillingModel  {
+public class FillingModel {
 	
 	private	String fileCurrentTime = "C:\\Users\\Lenovo\\git\\repository4\\ProgettoOOP\\src\\main\\resources\\ApiCallsByTime";
 	private	String fileForecast = "C:\\Users\\Lenovo\\git\\repository4\\ProgettoOOP\\src\\main\\resources\\ApiForecast";
@@ -26,12 +26,20 @@ public class FillingModel  {
 	private Vector <Weather> weatXForecast ;
 	
 	
+
 	public JSONObject readFile( String path) {
-		JSONObject jsonObj = null;
-		JSONParser parser = new JSONParser();
 		try {
-			Object obj = parser.parse(new FileReader (path));
-			jsonObj = (JSONObject) obj;
+			BufferedReader reader = new BufferedReader(new FileReader(fileCurrentTime));
+			String line = reader.readLine();
+			JSONObject jsonObj = null ;
+			while( line != null) {
+				JSONParser parser = new JSONParser();
+				Object obj = parser.parse(line);
+				jsonObj = (JSONObject) obj;
+				
+				line = reader.readLine();
+			}
+			return jsonObj;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -39,11 +47,11 @@ public class FillingModel  {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		return jsonObj;
+		return null;
 	}
 	
 	
-	public void setWeatXCurrentTime() {
+	public void fillWeatXCurrentTime() {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(fileCurrentTime));
 			String line = reader.readLine();
@@ -87,7 +95,7 @@ public class FillingModel  {
 	}
 	
 	
-	public void setPlaceCurrent() {
+	public void fillPlaceCurrent() {
 		JSONObject obj = readFile(fileCurrentTime);
 		
 		JSONObject sys = (JSONObject) obj.get("sys");
@@ -95,10 +103,30 @@ public class FillingModel  {
 		String city = (String) obj.get("name"); 
 		String country = (String) sys.get("country");
 		
-		setWeatXCurrentTime();
+		fillWeatXCurrentTime();
 		
 		this.placeCurrent= new Place(country , city, this.weatXCurrentTime);
 		
+	}
+
+
+	public Place getPlaceCurrent() {
+		return placeCurrent;
+	}
+
+
+	public void setPlaceCurrent(Place placeCurrent) {
+		this.placeCurrent = placeCurrent;
+	}
+
+
+	public Place getPlaceForecast() {
+		return placeForecast;
+	}
+
+
+	public void setPlaceForecast(Place placeForecast) {
+		this.placeForecast = placeForecast;
 	}
 	
 
