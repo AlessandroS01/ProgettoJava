@@ -11,10 +11,6 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Request.Builder;
 import com.squareup.okhttp.Response;
-
-import it.univpm.ProgettoOOP.Model.Meteo;
-
-
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.http.HttpClient;
@@ -23,7 +19,7 @@ import java.net.http.HttpResponse;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import it.univpm.ProgettoOOP.Model.Weather;
-import java.io.*; // aggiunta per evitare errore su io exceptions
+import java.io.*; 
 
 public class StartConnectionURLCurrent extends StartConnectionURL{
 	

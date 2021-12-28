@@ -22,20 +22,33 @@ import org.json.simple.*;
 @RestController
 public class ApiCall {
 	
-
+	/**
+	 * This is a root that has as @return the informations of
+	 * the current time taken with the API.
+	 */
 	@GetMapping ( "/getCurrentAncona" )
 	public JSONObject getCurrentWeather (){
 		StartConnectionURLCurrent start = new StartConnectionURLCurrent("ancona");
 		return start.startCurrentConnection();
 	}
 
-	
+	/**
+	 * This is a root that has as @return the informations of
+	 * the forecast for the next 5 days taken with the API.
+	 */
 	@GetMapping ( "/getAncona5Days" )
 	public JSONObject getWeather5Days () {
 		StartConnectionURL5Days startForecast = new StartConnectionURL5Days("ancona");
 		return startForecast.startConnection5Days();
 	}
 	
+	/**
+	 * This is a root used to call the Weather API and write automatically every hour
+	 * the informations inside @ApiCallsByTime(local file situated in the resources).
+	 * The @return is "Carimento Completato" if everything works properly.
+	 * If the root has a problem while searching for the file it gives "The file given doesn't exist" 
+	 * as @return
+	 */
 	@GetMapping ( "/writerCurrentHour")
 	public String writer() {
 		WriteLocalFile write = new WriteLocalFile();
@@ -47,6 +60,13 @@ public class ApiCall {
 		return "Caricamento completato";
 	}
 	
+	/**
+	 * This is a root used to call the Forecast API and write automatically 
+	 * the informations inside @ApiForecast(local file situated in the resources).
+	 * The @return is "Carimento Completato" if everything works properly.
+	 * If the root has a problem while searching for the file it gives "The file given doesn't exist" 
+	 * as @return
+	 */
 	@GetMapping ( "/writerForecast")
 	public String writerForecast() {
 		WriteLocalFile write = new WriteLocalFile();

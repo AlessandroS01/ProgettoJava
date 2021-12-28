@@ -11,43 +11,48 @@ import it.univpm.ProgettoOOP.Exception.WrongFileException;
 import it.univpm.ProgettoOOP.Services.StartConnectionURL5Days;
 import it.univpm.ProgettoOOP.Services.StartConnectionURLCurrent;
 
+
+/**
+ * This @class is used to write automatically the informations written
+ * inside both the API in two different local files that can be found in the @resource package.
+ * The 2 files are :
+ * @ApiCallsByTime
+ * @ApiFOrecast
+ */
 public class WriteLocalFile {
 	
-	private String fileName = "ApiCallsByTime";
 	private StartConnectionURLCurrent connection = new StartConnectionURLCurrent("ancona");
 	private StartConnectionURL5Days connectionForecast = new StartConnectionURL5Days("ancona");
 	private FileWriter writer;
-	private BufferedWriter buffWriter;
-	private String path = "C:\\Users\\manue\\Desktop\\demoprogettojava\\ProgettoJava2\\ProgettoOOP\\src\\main\\resources\\ApiCallsByTime";
-	private String pathForecast = "C:\\Users\\manue\\Desktop\\demoprogettojava\\ProgettoJava2\\ProgettoOOP\\src\\main\\resources\\ApiCallsByTime";
+	private String path = "C:\\Users\\Lenovo\\git\\repository4\\ProgettoOOP\\src\\main\\resources\\ApiCallsByTime";
+	private String pathForecast = "C:\\Users\\Lenovo\\git\\repository4\\ProgettoOOP\\src\\main\\resources\\ApiForecast";
 	
 	
 	/**
-	 * Write on a local file the current informations
-	 * about the Current time
+	 * Write with a timer set to 1 hour informations
+	 * about the Current time on a local file 
 	 */
 	public void WriteOnLocalFileHour() throws WrongFileException {
 		Timer timer = new Timer();	
 		
 		TimerTask taskCurrent = new TimerTask() {
 
-			
 			public void run() {
 				File file = new File (path);
 				try {
-				if (!file.exists()) {
-					file.createNewFile();
-				}
+					if (!file.exists()) {
+						file.createNewFile();
+					}
 					connection.startCurrentConnection();
 					
-						writer = new FileWriter(file, true);
-						writer.write(connection.startCurrentConnection().toJSONString());
-						writer.write('\n');
-						writer.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+					writer = new FileWriter(file, true);
+					writer.write( connection.startCurrentConnection().toJSONString());
+					writer.write('\n');
+					writer.close();
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
+			}
 			
 		};
 		timer.scheduleAtFixedRate(taskCurrent, 0, 3600000);
@@ -69,7 +74,7 @@ public class WriteLocalFile {
 				File file = new File (pathForecast);
 					try {
 						if (!file.exists()) {
-						file.createNewFile();
+							file.createNewFile();
 						}
 					    connectionForecast.startConnection5Days();
 					    writer = new FileWriter(file, true);
