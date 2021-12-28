@@ -19,15 +19,6 @@ import it.univpm.ProgettoOOP.Model.Weather;
 		
 		
 	         	
-		   
-		   
-	   
-	/* 
-	 * 
-	 * timer.schedule(parsingConnDaily, 3600000); // esempio
-	 * 
-	 * 
-	 */
 
 
 	
@@ -37,6 +28,9 @@ import it.univpm.ProgettoOOP.Model.Weather;
 	 * currentWeather API
 	 */
 	 public class Parsing {
+		 
+		 
+	
    
 
 	public Place parsingConnDaily( JSONObject obj , String city) {
