@@ -35,8 +35,8 @@ public class FillingModel {
 	 *  	the local file ApiForecast
 	 *  
 	 */
-	private	String fileCurrentTime = "C:\\Users\\Lenovo\\git\\repository4\\ProgettoOOP\\src\\main\\resources\\ApiCallsByTime";
-	private	String fileForecast = "C:\\Users\\Lenovo\\git\\repository4\\ProgettoOOP\\src\\main\\resources\\ApiForecast";
+	private	String fileCurrentTime = "C:\\Users\\manue\\Desktop\\demoprogettojava\\ProgettoJava2\\ProgettoOOP\\src\\main\\resources\\ApiCallsByTime";
+	private	String fileForecast = "C:\\Users\\manue\\Desktop\\demoprogettojava\\ProgettoJava2\\ProgettoOOP\\src\\main\\resources\\ApiForecast";
 	private	Place placeCurrent ;
 	private	Place placeForecast ;
 	private Vector <Weather> weatXCurrentTime = new Vector <Weather>();

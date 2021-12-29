@@ -7,87 +7,67 @@ import java.util.Vector;
 import org.json.simple.JSONObject;
 
 import it.univpm.ProgettoOOP.Model.Time;
+import it.univpm.ProgettoOOP.Model.Weather;
 import it.univpm.ProgettoOOP.Model.Wind;
 import it.univpm.ProgettoOOP.Services.StartConnectionURL5Days;
 import it.univpm.ProgettoOOP.Services.StartConnectionURLCurrent;
 
 public class Stats {
+private Vector<Weather> current = new Vector<Weather>();
+private Vector<Weather> forecast = new Vector<Weather>();
 
-private Vector<Wind> datoAttuale = new Vector<Wind>();
-private Vector<Wind> datoForecast = new Vector<Wind>();
+FillingModel c = new FillingModel();
 
-
-
-public void filterCurrent(Vector<Wind> datoAttuale) {
+public void fill(Vector<Weather> current,Vector<Weather> forecast) {
+	current = c.fillWeatXCurrentTime();
+	forecast = c.fillWeatForecast();
 	
-	StartConnectionURLCurrent now = new StartConnectionURLCurrent("ancona");
-	JSONObject Obj = now.startCurrentConnection();
-	JSONObject ObjWind = (JSONObject) Obj.get("wind");
-	
-	Long date = (Long) Obj.get("dt");
-	java.util.Date time = new java.util.Date((long)date*1000);
-	
-	float speed = (float) ObjWind.get("wind");
-	int deg = (int) ObjWind.get("deg");
-	float gust = (float) ObjWind.get("gust");
-	Wind n = new Wind(time,(float) ObjWind.get("wind"),(int) ObjWind.get("deg"),(float) ObjWind.get("gust"));
-    
-    datoAttuale.add(n);
+
 }
 
-public void filterForecast(Vector<Wind> datoForecast) {
-	StartConnectionURL5Days after = new StartConnectionURL5Days("ancona");
-	JSONObject Obj = after.startConnection5Days();
-	JSONObject ObjWind = (JSONObject) Obj.get("wind");
+public long mediaTemp(Vector<Weather> current) {
+	long [] minDegree = null;
+	long somma = 0;
+	long media = 0;
+	for(int i = 0; i<current.size(); i++) {
+     minDegree[i] = current.get(i).getDegree();
+	}
 	
-	Long date = (Long) Obj.get("dt");
-	java.util.Date time = new java.util.Date((long)date*1000);
+	for(int i =  0; i<minDegree.length; i++) {
+		somma += minDegree[i];
+		media = somma/i;
+	}
 	
-	float speed = (float) ObjWind.get("wind");
-	int deg = (int) ObjWind.get("deg");
-	float gust = (float) ObjWind.get("gust");
-	Wind n = new Wind(time,(float) ObjWind.get("wind"),(int) ObjWind.get("deg"),(float) ObjWind.get("gust"));
-    
-    datoForecast.add(n);
-	
+	return media;
 }
-
-public void tempMin(Vector<Wind> dato) {
 	
+public void tempMinXDay (Vector<Weather> current) {
+//	long
 	
-	
-	
-}
-
-/*public void confrontoCurrentForecast(Vector<Wind> datoAttuale, Vector<Wind> datoForecast) {
-	if(datoAttuale.getTime() == datoForecast.getTime()) {
-	int n =	datoAttuale.getDeg() - datoForecast.getDeg();
+	for(int i = 0; i<current.size();i++) {
+	if(current.get(i).getTime().contains("December 29") ==  current.get(i+1).getTime().contains("December 29")) {
+		
 		
 	}
-	*/
 	
+	
+	}
+}
+
+
+	
+	
+	
+public long comparison(Vector<Weather> current,Vector<Weather> forecast) {
+	long differences = 0;
+	for(int i = 0; i<current.size(); i++) {
+	if(current.get(i).getTime()== forecast.get(0).getTime()) {
+	differences = current.get(i).getDegree()- forecast.get(0).getDegree();		
+		}
+	}
+	
+	return differences;
 }
 	
 	
-	
-	
-
-/*public void parse(JSONObject obj , String city) {
-	StartConnectionURLCurrent daily = new StartConnectionURLCurrent( city);
-    
-	JSONObject Obj = daily.startCurrentConnection();
-	JSONObject ObjWind = (JSONObject) Obj.get("wind");
-	
-	Long date = (Long) Obj.get("dt");
-	java.util.Date time = new java.util.Date((long)date*1000);
-	
-	float speed = (float) ObjWind.get("wind");
-	int deg = (int) ObjWind.get("deg");
-	float gust = (float) ObjWind.get("gust");
-	
-Vector <JSONObject> wind = new Vector <JSONObject>();
-
-    wind.add(ObjWind);	
-	wind.add((JSONObject) obj.get("dt"));
-}	
-*/ 
+}
