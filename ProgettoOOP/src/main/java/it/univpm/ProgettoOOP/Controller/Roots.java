@@ -18,10 +18,12 @@ import it.univpm.ProgettoOOP.Services.StartConnectionURLCurrent;
 import it.univpm.ProgettoOOP.Statistics.FillingModel;
 import it.univpm.ProgettoOOP.Timer.WriteLocalFile;
 
+import java.util.Vector;
+
 import org.json.simple.*;
 
 @RestController
-public class ApiCall {
+public class Roots {
 	
 	/**
 	 * This is a root that has as @return the informations of
@@ -50,11 +52,11 @@ public class ApiCall {
 	 * If the root has a problem while searching for the file it gives "The file given doesn't exist" 
 	 * as @return
 	 */
-	@GetMapping ( "/writerCurrentHour")
+	@GetMapping ( "/writerEvery3Hours")
 	public String writer() {
 		WriteLocalFile write = new WriteLocalFile();
 		try {
-			write.WriteOnLocalFileHour();
+			write.WriteOnLocalFile3Hours();
 		} catch (WrongFileException e) {
 			return e.sendMessage();
 		}
@@ -82,17 +84,10 @@ public class ApiCall {
 	
 	
 	@GetMapping("/ciao")
-	public String ciao() {
+	public Place ciao() {
 		FillingModel c= new FillingModel();
-		try{
-			c.fillPlaceCurrent();
-		}catch(Exception e) {
-			return "ciao";
-		}
-		if ( c.getPlaceCurrent() == null) {
-			return "ciao";
-		}
-		return "aiuto";
+		
+		return c.fillPlaceCurrent();
 	}
 	
 }

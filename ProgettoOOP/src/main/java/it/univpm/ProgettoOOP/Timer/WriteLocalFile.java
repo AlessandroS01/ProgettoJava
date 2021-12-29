@@ -29,10 +29,11 @@ public class WriteLocalFile {
 	
 	
 	/**
-	 * Write with a timer set to 1 hour informations
-	 * about the Current time on a local file 
+	 * Write ,with a timer set to 3 hours, informations
+	 * about the Current time on a local file called 
+	 * @ApiCallsByTime
 	 */
-	public void WriteOnLocalFileHour() throws WrongFileException {
+	public void WriteOnLocalFile3Hours() throws WrongFileException {
 		Timer timer = new Timer();	
 		
 		TimerTask taskCurrent = new TimerTask() {
@@ -55,7 +56,7 @@ public class WriteLocalFile {
 			}
 			
 		};
-		timer.scheduleAtFixedRate(taskCurrent, 0, 3600000);
+		timer.scheduleAtFixedRate(taskCurrent, 1560000, 3600000*3);
 	}
 	
 	
@@ -68,7 +69,6 @@ public class WriteLocalFile {
 		
 		TimerTask taskCurrent = new TimerTask() {
 
-	
 			public void run() {
 			
 				File file = new File (pathForecast);
@@ -85,8 +85,6 @@ public class WriteLocalFile {
 						e.printStackTrace();
 					}
 				}
-			
-			
 		};
 		timerForecast.schedule(taskCurrent, 10000);
 	}
