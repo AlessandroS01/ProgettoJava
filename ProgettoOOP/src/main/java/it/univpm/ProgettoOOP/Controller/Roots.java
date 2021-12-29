@@ -15,38 +15,61 @@ import it.univpm.ProgettoOOP.Model.Place;
 import it.univpm.ProgettoOOP.Model.Weather;
 import it.univpm.ProgettoOOP.Services.StartConnectionURL5Days;
 import it.univpm.ProgettoOOP.Services.StartConnectionURLCurrent;
+import it.univpm.ProgettoOOP.Statistics.FillingModel;
 import it.univpm.ProgettoOOP.Timer.WriteLocalFile;
+
+import java.util.Vector;
 
 import org.json.simple.*;
 
 @RestController
-public class ApiCall {
+public class Roots {
 	
-
+	/**
+	 * This is a root that has as @return the informations of
+	 * the current time taken with the API.
+	 */
 	@GetMapping ( "/getCurrentAncona" )
 	public JSONObject getCurrentWeather (){
 		StartConnectionURLCurrent start = new StartConnectionURLCurrent("ancona");
 		return start.startCurrentConnection();
 	}
 
-	
+	/**
+	 * This is a root that has as @return the informations of
+	 * the forecast for the next 5 days taken with the API.
+	 */
 	@GetMapping ( "/getAncona5Days" )
 	public JSONObject getWeather5Days () {
 		StartConnectionURL5Days startForecast = new StartConnectionURL5Days("ancona");
 		return startForecast.startConnection5Days();
 	}
 	
-	@GetMapping ( "/writerCurrentDay")
+	/**
+	 * This is a root used to call the Weather API and write automatically every hour
+	 * the informations inside @ApiCallsByTime(local file situated in the resources).
+	 * The @return is "Carimento Completato" if everything works properly.
+	 * If the root has a problem while searching for the file it gives "The file given doesn't exist" 
+	 * as @return
+	 */
+	@GetMapping ( "/writerEvery3Hours")
 	public String writer() {
 		WriteLocalFile write = new WriteLocalFile();
 		try {
-			write.WriteOnLocalFileHour();
+			write.WriteOnLocalFile3Hours();
 		} catch (WrongFileException e) {
 			return e.sendMessage();
 		}
 		return "Caricamento completato";
 	}
 	
+	/**
+	 * This is a root used to call the Forecast API and write automatically 
+	 * the informations inside @ApiForecast(local file situated in the resources).
+	 * The @return is "Carimento Completato" if everything works properly.
+	 * If the root has a problem while searching for the file it gives "The file given doesn't exist" 
+	 * as @return
+	 */
 	@GetMapping ( "/writerForecast")
 	public String writerForecast() {
 		WriteLocalFile write = new WriteLocalFile();
@@ -56,6 +79,15 @@ public class ApiCall {
 			return e.sendMessage();
 		}
 		return "Caricamento completato";
+	}
+	
+	
+	
+	@GetMapping("/ciao")
+	public Place ciao() {
+		FillingModel c= new FillingModel();
+		
+		return c.fillPlaceCurrent();
 	}
 	
 }

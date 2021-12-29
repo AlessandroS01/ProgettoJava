@@ -4,12 +4,12 @@ import java.sql.Date;
 
 public class Wind extends Time{
 
-	protected float speed;
-	protected int degree;
-	protected float gust;
+	protected double speed;
+	protected long degree;
+	protected double gust;
 	
 	
-	public Wind(java.util.Date time, float speed, int speedDegree, float gust) {
+	public Wind(String time, double speed, long speedDegree, double gust) {
 		super(time);
 		this.speed = speed;
 		this.degree = speedDegree;
@@ -17,7 +17,7 @@ public class Wind extends Time{
 	}
 	
 	
-	public float getSpeed() {
+	public double getSpeed() {
 		return speed;
 	}
 	
@@ -25,7 +25,7 @@ public class Wind extends Time{
 		this.speed = speed;
 	}
 	
-	public int getDegree() {
+	public long getDegree() {
 		return degree;
 	}
 	
@@ -33,7 +33,7 @@ public class Wind extends Time{
 		this.degree = speedDegree;
 	}
 	
-	public float getGust() {
+	public double getGust() {
 		return gust;
 	}
 	
