@@ -24,6 +24,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class FillingModel {
 	
+	
 	/**
 	 *	@param fileCurrentTime and fileForecast are the paths for the local files.
 	 *  @param placeCurrent uses
@@ -41,6 +42,7 @@ public class FillingModel {
 	private Vector <Weather> weatXCurrentTime = new Vector <Weather>();
 	private Vector <Weather> weatForecast = new Vector <Weather>();
 	
+	
 	/**
 	 * Method which create the String Date from the @param seconds given by the API
 	 * @return the right date in which the user call the API 
@@ -51,6 +53,7 @@ public class FillingModel {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE,MMMM d,yyyy h:mm,a", Locale.ENGLISH);
 		return dateTime.format(formatter);
 	}
+	
 	
 	/**
 	 * Method that aims to open and read both local files.
@@ -78,6 +81,7 @@ public class FillingModel {
 		}
 		return jsonObj;
 	}
+	
 	
 	/**
 	 * Method which sets the Vector weatXCurrentTime
@@ -141,6 +145,7 @@ public class FillingModel {
 		
 	}
 	
+	
 	/**
 	 * Method that sets values to placeCurrent.
 	 * It calls @method fillWeatXCurrentTime() for doing that because 
@@ -161,19 +166,22 @@ public class FillingModel {
 		return placeCurrent;
 	}
 
+	
 	/**
-	 * Method which sets the Vector weatXCurrentTime
-	 * @return weatXCurrentTime but with values found int ApiCallsByTime
+	 * Method which sets the Vector weatForecast
+	 * @return weatForecast but with values found int ApiCallsByTime
 	 */
-	public Vector <Weather> fillWeatForecast(){
+	public Vector <Weather> fillWeatForecast() {
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(fileCurrentTime));
+			BufferedReader reader = new BufferedReader(new FileReader(fileForecast));
 			String line = reader.readLine();
-			Vector <JSONObject> obj = readFile(fileCurrentTime);
-			JSONObject objWind;
-			JSONArray objWeat;
-			JSONObject objWeather;
+			Vector <JSONObject> obj = readFile(fileForecast);
+			JSONObject arrList ;
 			Weather support ;
+			JSONObject objList;
+			JSONArray arrWeat;
+			JSONObject objWeather;
+			JSONObject objWind;
 			
 			Long date;
 			String time;
@@ -183,9 +191,33 @@ public class FillingModel {
 			double gust;
 			
 			String weather;
+			arrList = (JSONObject) obj.get(0).get("list");
 			
-			for (int i = 0 ; line!=null ; i++) {
+			for( int i = 0 ; i < arrList.size() ; i++) {
+				objList = (JSONObject) arrList.get(i);
+				objWind = (JSONObject) objList.get("wind");
+				arrWeat = (JSONArray) objList.get("weather");
+				objWeather = (JSONObject) arrWeat.get(0);
 				
+				date = (Long) objList.get("dt");
+				time = dtToTime(date);
+				
+				if ( (double) objWind.get("gust") != 0 ) 
+					gust = (double) objWind.get("gust");
+				else gust = 0;
+				
+				if( (double) objWind.get("speed") != 0 )
+					speed = (double) objWind.get("speed");
+				else speed = 0;
+
+				if( (long) objWind.get("deg") != 0 )
+					deg = (long) objWind.get("deg");
+				else deg = 0;
+				
+				weather = (String) objWeather.get("main");
+				
+				support = new Weather(time , speed , deg , gust , weather);
+				this.weatForecast.add(support);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -197,6 +229,21 @@ public class FillingModel {
 		
 	}
 	
+	
+	
+	public Place fillPlaceForecast() {
+		Vector <JSONObject> obj = readFile(fileCurrentTime);
+		
+		JSONObject sys = (JSONObject) obj.firstElement().get("sys");
+	
+		String city = (String) obj.firstElement().get("name"); 
+		String country = (String) sys.get("country");
+		
+		fillWeatForecast();
+		
+		this.placeForecast= new Place(country , city, this.weatXCurrentTime);
+		return placeForecast;
+	}
 	
 	
 	
