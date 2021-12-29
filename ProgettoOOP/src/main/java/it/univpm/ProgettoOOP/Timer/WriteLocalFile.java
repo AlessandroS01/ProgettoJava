@@ -24,8 +24,14 @@ public class WriteLocalFile {
 	private StartConnectionURLCurrent connection = new StartConnectionURLCurrent("ancona");
 	private StartConnectionURL5Days connectionForecast = new StartConnectionURL5Days("ancona");
 	private FileWriter writer;
+<<<<<<< HEAD
+	private BufferedWriter buffWriter;
+	private String path = "C:\\Users\\manue\\Desktop\\demoprogettojava\\ProgettoJava2\\ProgettoOOP\\src\\main\\resources\\ApiCallsByTime";
+	private String pathForecast = "C:\\Users\\manue\\Desktop\\demoprogettojava\\ProgettoJava2\\ProgettoOOP\\src\\main\\resources\\ApiForecast";
+=======
 	private String path = "C:\\Users\\Lenovo\\git\\repository4\\ProgettoOOP\\src\\main\\resources\\ApiCallsByTime";
 	private String pathForecast = "C:\\Users\\Lenovo\\git\\repository4\\ProgettoOOP\\src\\main\\resources\\ApiForecast";
+>>>>>>> branch 'master' of https://github.com/AlessandroS01/ProgettoJava.git
 	
 	
 	/**
