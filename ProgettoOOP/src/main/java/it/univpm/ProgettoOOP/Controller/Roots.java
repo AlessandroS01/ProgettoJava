@@ -111,14 +111,14 @@ public class Roots {
 	}
 	
 	
-	@GetMapping("/ciao")
+	@GetMapping("/see/ApiCallsByTime")
 	public Place ciao() {
 		FillingModel c= new FillingModel();
 		
 		return c.fillPlaceCurrent();
 	}
 	
-	@GetMapping("/hello")
+	@GetMapping("/see/ApiForecast")
 	public Place hello() {
 		FillingModel c= new FillingModel();
 		
