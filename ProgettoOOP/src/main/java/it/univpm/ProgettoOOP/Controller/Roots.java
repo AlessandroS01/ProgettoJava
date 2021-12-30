@@ -90,4 +90,11 @@ public class Roots {
 		return c.fillPlaceCurrent();
 	}
 	
+	@GetMapping("/hello")
+	public Place hello() {
+		FillingModel c= new FillingModel();
+		
+		return c.fillPlaceForecast();
+	}
+	
 }

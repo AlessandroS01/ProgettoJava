@@ -1,3 +1,4 @@
+
 package it.univpm.ProgettoOOP.Statistics;
 
 import java.io.FileNotFoundException;
@@ -42,18 +43,29 @@ public long mediaTemp(Vector<Weather> current) {
 }
 	
 public void tempMinXDay (Vector<Weather> current) {
-//	long
+    long tempMin = 1000;
 	
 	for(int i = 0; i<current.size();i++) {
-	if(current.get(i).getTime().contains("December 29") ==  current.get(i+1).getTime().contains("December 29")) {
-		
-		
-	}
-	
+//	if(current.get(i).getTime().contains("December 29") ==  current.get(i+1).getTime().contains("December 29")) {
+		 if (current.get(i).getDegree()< tempMin)
+	     {
+	      tempMin = current.get(i).getDegree();
+	     }
 	
 	}
 }
-
+public void tempMaxXDay (Vector<Weather> current) {
+    long tempMax = -1000;
+	
+	for(int i = 0; i<current.size();i++) {
+//	if(current.get(i).getTime().contains("December 29") ==  current.get(i+1).getTime().contains("December 29")) {
+		 if (current.get(i).getDegree()< tempMax)
+	     {
+			 tempMax = current.get(i).getDegree();
+	     }
+	
+	}
+}
 
 	
 	
