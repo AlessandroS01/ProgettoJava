@@ -35,6 +35,7 @@ public class StartConnectionURL {
 	
 	public StartConnectionURL(String cityName) {
 		this.cityName = cityName;
+		if( cityName == null ) this.cityName = "ancona";
 	}
 	
 	public String getCityName() {
