@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.univpm.ProgettoOOP.Exception.WrongFileException;
+import it.univpm.ProgettoOOP.Filter.MyFilter;
 import it.univpm.ProgettoOOP.Model.Place;
 import it.univpm.ProgettoOOP.Model.Weather;
 import it.univpm.ProgettoOOP.Services.StartConnectionURL5Days;
@@ -79,6 +80,18 @@ public class Roots {
 			return e.sendMessage();
 		}
 		return "Caricamento completato";
+	}
+	
+	/**
+	 * This is a root in which the user can choose the weather during the time 
+	 * he provides in the @method filterPerHour written inside @class MyFilter.
+	 * @return @class Place created using a Vector of Weather with @param hours equal
+	 * 		to every object of the Vector.
+	 */
+	@RequestMapping({"/filterPerHour/{time}" , "/filter4PM/"})
+	public Place filtered(@PathVariable ( value = "time", required = false )String time) {
+		MyFilter filter = new MyFilter();
+		return filter.filterPerHour(time);
 	}
 	
 	

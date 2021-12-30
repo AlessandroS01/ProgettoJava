@@ -9,10 +9,10 @@ public class Wind extends Time{
 	protected double gust;
 	
 	
-	public Wind(String time, double speed, long speedDegree, double gust) {
+	public Wind(String time, double speed, long degree, double gust) {
 		super(time);
 		this.speed = speed;
-		this.degree = speedDegree;
+		this.degree = degree;
 		this.gust = gust;
 	}
 	
@@ -21,7 +21,7 @@ public class Wind extends Time{
 		return speed;
 	}
 	
-	public void setSpeed(float speed) {
+	public void setSpeed(double speed) {
 		this.speed = speed;
 	}
 	
@@ -29,15 +29,15 @@ public class Wind extends Time{
 		return degree;
 	}
 	
-	public void setDegree(int speedDegree) {
-		this.degree = speedDegree;
+	public void setDegree(int degree) {
+		this.degree = degree;
 	}
 	
 	public double getGust() {
 		return gust;
 	}
 	
-	public void setGust(float gust) {
+	public void setGust(double gust) {
 		this.gust = gust;
 	}
 	
