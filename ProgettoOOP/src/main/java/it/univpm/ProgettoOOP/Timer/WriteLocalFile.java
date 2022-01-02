@@ -69,7 +69,7 @@ public class WriteLocalFile {
 			}
 			
 		};
-		timer.scheduleAtFixedRate(taskCurrent, 0, 3600000*3);
+		timer.scheduleAtFixedRate(taskCurrent, 5700000 , 3600000*3);
 	}
 	
 	

@@ -90,11 +90,15 @@ public class Roots {
 	 * @return @class Place created using a Vector of Weather with @param hours equal
 	 * 		to every object of the Vector.
 	 * @param hour should be written in this manner : "hour:minutes,AM/PM" (AM or PM)
+	 * Example : 10:00,PM
 	 */
 	@RequestMapping({"/filter/per/hour/{time}" , "/filter/per/hour/"})
 	public Place filteredHour(@PathVariable ( value = "time", required = false )String time) {
 		MyFilter filter = new MyFilter();
-		return filter.filterPerHour(time);
+		
+		if ( filter.filterPerHour(time) != null )
+			return filter.filterPerHour(time);
+		else return null;
 	}
 	
 	/**
@@ -103,11 +107,15 @@ public class Roots {
 	 * @return @class Place created using a Vector of Weather with @param day equal
 	 * 		to every object of the Vector.
 	 * @param date should be written in this manner : "day_of_the_week,month day_of_the_month,year" 
+	 * Example : Saturday,January 1,2022
 	 */
 	@RequestMapping({"/filter/per/day/{date}" , "/filter/per/day/"})
 	public Place filteredDay(@PathVariable ( value = "date", required = false )String date) {
 		MyFilter filter = new MyFilter();
-		return filter.filterPerDay(date);
+		
+		if( filter.filterPerDay(date) != null )
+			return filter.filterPerDay(date);
+		else return null;
 	}
 	
 	

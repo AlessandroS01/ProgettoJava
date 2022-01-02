@@ -20,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 
 
 /**
- * Class that aims to create and fill the @package Model.
+ * Class that aims to create objects of Place and fill them.
  */
 public class FillingModel {
 	
@@ -54,8 +54,8 @@ public class FillingModel {
 	
 	
 	/**
-	 * Method that aims to open and read both local files.
-	 * @return Vector <JSONObject> which are stored in the local file 
+	 * Method that aims to open and read @file ApiCallsByTime.
+	 * @return Vector <JSONObject> which is stored inside the local file 
 	 */
 	public Vector <JSONObject> readFileCurrent() {
 		Vector <JSONObject> jsonObj = new Vector <JSONObject> (); 
@@ -80,6 +80,10 @@ public class FillingModel {
 		return jsonObj;
 	}
 	
+	/**
+	 * Method that aims to open and read @file ApiForecast.
+	 * @return JSONObject which is stored inside the local file 
+	 */
 	public JSONObject readFileForecast() {
 		JSONObject jsonObj = new JSONObject(); 
 		JSONParser parser = new JSONParser();
@@ -101,7 +105,7 @@ public class FillingModel {
 	
 	/**
 	 * Method which sets the Vector weatXCurrentTime
-	 * @return weatXCurrentTime but with values found int ApiCallsByTime
+	 * @return weatXCurrentTime but with values found in ApiCallsByTime
 	 */
 	public Vector <Weather> fillWeatXCurrentTime() {
 		try {
@@ -130,10 +134,8 @@ public class FillingModel {
 				date = (Long) obj.get(i).get("dt");
 				time = dtToTime(date);
 			
-			
 				weather = (String) objWeather.get("main");
-				
-				
+					
 				if( (double) objWind.get("speed") != 0 )
 					speed = (double) objWind.get("speed");
 				else speed = 0;

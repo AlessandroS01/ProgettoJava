@@ -24,8 +24,6 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
-
-
 /**
  * Class which open the connection with the API.
  */
