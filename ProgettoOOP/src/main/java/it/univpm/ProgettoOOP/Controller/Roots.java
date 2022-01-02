@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.univpm.ProgettoOOP.Exception.WrongFileException;
+import it.univpm.ProgettoOOP.Filter.MyFilter;
 import it.univpm.ProgettoOOP.Model.Place;
 import it.univpm.ProgettoOOP.Model.Weather;
 import it.univpm.ProgettoOOP.Services.StartConnectionURL5Days;
@@ -27,21 +28,23 @@ public class Roots {
 	
 	/**
 	 * This is a root that has as @return the informations of
-	 * the current time taken with the API.
+	 * the current time taken by the API.
+	 * @param city is the city we want to study.
 	 */
-	@GetMapping ( "/getCurrentAncona" )
-	public JSONObject getCurrentWeather (){
-		StartConnectionURLCurrent start = new StartConnectionURLCurrent("ancona");
+	@RequestMapping ( {"/get/current/{city}" , "/get/current/"})
+	public JSONObject getCurrentWeather (@PathVariable ( value = "city" , required = false ) String city){
+		StartConnectionURLCurrent start = new StartConnectionURLCurrent(city);
 		return start.startCurrentConnection();
 	}
 
 	/**
 	 * This is a root that has as @return the informations of
-	 * the forecast for the next 5 days taken with the API.
+	 * the forecast for the next 5 days taken by the API.
+	 * @param city is the city we want to study.
 	 */
-	@GetMapping ( "/getAncona5Days" )
-	public JSONObject getWeather5Days () {
-		StartConnectionURL5Days startForecast = new StartConnectionURL5Days("ancona");
+	@RequestMapping ( {"/get/forecast/{city}" , "/get/forecast/"})
+	public JSONObject getWeather5Days (@PathVariable ( value = "city" , required = false ) String city) {
+		StartConnectionURL5Days startForecast = new StartConnectionURL5Days(city);
 		return startForecast.startConnection5Days();
 	}
 	
@@ -52,9 +55,9 @@ public class Roots {
 	 * If the root has a problem while searching for the file it gives "The file given doesn't exist" 
 	 * as @return
 	 */
-	@GetMapping ( "/writerEvery3Hours")
-	public String writer() {
-		WriteLocalFile write = new WriteLocalFile();
+	@RequestMapping ( {"/writer/3/hours/{city}" , "/writer/3/hours/" })
+	public String writer( @PathVariable ( value = "city" , required = false ) String city ) {
+		WriteLocalFile write = new WriteLocalFile( city);
 		try {
 			write.WriteOnLocalFile3Hours();
 		} catch (WrongFileException e) {
@@ -70,9 +73,9 @@ public class Roots {
 	 * If the root has a problem while searching for the file it gives "The file given doesn't exist" 
 	 * as @return
 	 */
-	@GetMapping ( "/writerForecast")
-	public String writerForecast() {
-		WriteLocalFile write = new WriteLocalFile();
+	@RequestMapping ({ "/writer/forecast/{city}" , "/writer/forecast/" })
+	public String writerForecast( @PathVariable ( value = "city" , required = false ) String city ) {
+		WriteLocalFile write = new WriteLocalFile( city);
 		try {
 			write.WriteOnLocalFileForecast();
 		} catch (WrongFileException e) {
@@ -81,16 +84,41 @@ public class Roots {
 		return "Caricamento completato";
 	}
 	
+	/**
+	 * This is a root in which the user can choose the weather during the time 
+	 * he provides in the @method filterPerHour written inside @class MyFilter.
+	 * @return @class Place created using a Vector of Weather with @param hours equal
+	 * 		to every object of the Vector.
+	 * @param hour should be written in this manner : "hour:minutes,AM/PM" (AM or PM)
+	 */
+	@RequestMapping({"/filter/per/hour/{time}" , "/filter/per/hour/"})
+	public Place filteredHour(@PathVariable ( value = "time", required = false )String time) {
+		MyFilter filter = new MyFilter();
+		return filter.filterPerHour(time);
+	}
+	S
+	/**
+	 * This is a root in which the user can choose the weather during the day 
+	 * he provides in the @method filterPerDay written inside @class MyFilter.
+	 * @return @class Place created using a Vector of Weather with @param day equal
+	 * 		to every object of the Vector.
+	 * @param date should be written in this manner : "day_of_the_week,month day_of_the_month,year" 
+	 */
+	@RequestMapping({"/filter/per/day/{date}" , "/filter/per/day/"})
+	public Place filteredDay(@PathVariable ( value = "date", required = false )String date) {
+		MyFilter filter = new MyFilter();
+		return filter.filterPerDay(date);
+	}
 	
 	
-	@GetMapping("/ciao")
+	@GetMapping("/see/ApiCallsByTime")
 	public Place ciao() {
 		FillingModel c= new FillingModel();
 		
 		return c.fillPlaceCurrent();
 	}
 	
-	@GetMapping("/hello")
+	@GetMapping("/see/ApiForecast")
 	public Place hello() {
 		FillingModel c= new FillingModel();
 		

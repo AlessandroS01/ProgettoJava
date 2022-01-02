@@ -21,8 +21,12 @@ public class Weather extends Wind{
 		this.weather = weather;
 	}
 
+
+	
+	}
+
 	
 	
 	
 
-}
+

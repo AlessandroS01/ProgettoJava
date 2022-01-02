@@ -1,4 +1,5 @@
 
+
 package it.univpm.ProgettoOOP.Statistics;
 
 import java.io.FileNotFoundException;
@@ -73,7 +74,7 @@ public void tempMaxXDay (Vector<Weather> current) {
 public long comparison(Vector<Weather> current,Vector<Weather> forecast) {
 	long differences = 0;
 	for(int i = 0; i<current.size(); i++) {
-	if(current.get(i).getTime()== forecast.get(0).getTime()) {
+	if(current.get(i).getDate()== forecast.get(0).getDate()) {
 	differences = current.get(i).getDegree()- forecast.get(0).getDegree();		
 		}
 	}

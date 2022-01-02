@@ -21,15 +21,28 @@ import it.univpm.ProgettoOOP.Services.StartConnectionURLCurrent;
  */
 public class WriteLocalFile {
 	
-	private StartConnectionURLCurrent connection = new StartConnectionURLCurrent("ancona");
-	private StartConnectionURL5Days connectionForecast = new StartConnectionURL5Days("ancona");
+	private StartConnectionURLCurrent connection ;
+	private StartConnectionURL5Days connectionForecast ;
 	private FileWriter writer;
 
+
+
 	private BufferedWriter buffWriter;
+
 	private String path = "C:\\Users\\manue\\Desktop\\demoprogettojava\\ProgettoJava2\\ProgettoOOP\\src\\main\\resources\\ApiCallsByTime";
 	private String pathForecast = "C:\\Users\\manue\\Desktop\\demoprogettojava\\ProgettoJava2\\ProgettoOOP\\src\\main\\resources\\ApiForecast";
 
-	
+	public WriteLocalFile(String city) {
+		super();
+		this.connection = new StartConnectionURLCurrent(city);
+		this.connectionForecast = new StartConnectionURL5Days(city);
+		if ( city == null) {
+			this.connection = new StartConnectionURLCurrent("ancona");
+			this.connectionForecast = new StartConnectionURL5Days("ancona");
+		}
+	}
+
+
 	/**
 	 * Write ,with a timer set to 3 hours, informations
 	 * about the Current time on a local file called 
@@ -58,7 +71,7 @@ public class WriteLocalFile {
 			}
 			
 		};
-		timer.scheduleAtFixedRate(taskCurrent, 1560000, 3600000*3);
+		timer.scheduleAtFixedRate(taskCurrent, 0, 3600000*3);
 	}
 	
 	
