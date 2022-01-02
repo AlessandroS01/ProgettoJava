@@ -24,12 +24,14 @@ public class WriteLocalFile {
 	private StartConnectionURLCurrent connection ;
 	private StartConnectionURL5Days connectionForecast ;
 	private FileWriter writer;
+
+
+
 	private BufferedWriter buffWriter;
-	
-	private String path = "C:\\Users\\Lenovo\\git\\repository4\\ProgettoOOP\\src\\main\\resources\\ApiCallsByTime";
-	private String pathForecast = "C:\\Users\\Lenovo\\git\\repository4\\ProgettoOOP\\src\\main\\resources\\ApiForecast";
-	
-	
+
+	private String path = "C:\\Users\\manue\\Desktop\\demoprogettojava\\ProgettoJava2\\ProgettoOOP\\src\\main\\resources\\ApiCallsByTime";
+	private String pathForecast = "C:\\Users\\manue\\Desktop\\demoprogettojava\\ProgettoJava2\\ProgettoOOP\\src\\main\\resources\\ApiForecast";
+
 	public WriteLocalFile(String city) {
 		super();
 		this.connection = new StartConnectionURLCurrent(city);

@@ -34,8 +34,8 @@ public class FillingModel {
 	 *  	@param weatXForecast and they're used to take and store informations written in 
 	 *  	the local file ApiForecast
 	 */
-	private	String fileCurrentTime = "C:\\Users\\Lenovo\\git\\repository4\\ProgettoOOP\\src\\main\\resources\\ApiCallsByTime";
-	private	String fileForecast = "C:\\Users\\Lenovo\\git\\repository4\\ProgettoOOP\\src\\main\\resources\\ApiForecast";
+	private	String fileCurrentTime = "C:\\Users\\manue\\Desktop\\demoprogettojava\\ProgettoJava2\\ProgettoOOP\\src\\main\\resources\\ApiCallsByTime";
+	private	String fileForecast = "C:\\Users\\manue\\Desktop\\demoprogettojava\\ProgettoJava2\\ProgettoOOP\\src\\main\\resources\\ApiForecast";
 	private	Place placeCurrent ;
 	private	Place placeForecast ;
 	private Vector <Weather> weatXCurrentTime = new Vector <Weather>();
@@ -193,6 +193,7 @@ public class FillingModel {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(fileForecast));
 			String line = reader.readLine();
+
 			JSONObject obj = readFileForecast();
 			JSONArray arrList ;
 			Weather support ;
@@ -210,6 +211,7 @@ public class FillingModel {
 			
 			String weather;
 			arrList = (JSONArray) obj.get("list");
+
 			for( int i = 0 ; i < 40 ; i++) {
 				objList = (JSONObject) arrList.get(i);
 				objWind = (JSONObject) objList.get("wind");
