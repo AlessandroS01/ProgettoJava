@@ -63,7 +63,6 @@ public class Stats {
 					speedMax = this.current.get(i).getSpeed();
 				else if ( speedMax < this.current.get(i).getSpeed() )
 					speedMax = this.current.get(i).getSpeed();
-		
 		}
 		return speedMax;
 	}
