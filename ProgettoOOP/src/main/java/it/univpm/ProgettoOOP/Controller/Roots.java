@@ -96,7 +96,7 @@ public class Roots {
 		MyFilter filter = new MyFilter();
 		return filter.filterPerHour(time);
 	}
-	S
+	
 	/**
 	 * This is a root in which the user can choose the weather during the day 
 	 * he provides in the @method filterPerDay written inside @class MyFilter.
