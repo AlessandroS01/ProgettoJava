@@ -6,7 +6,7 @@ public class Place {
 	
 	private String state;
 	private String city;
-	private Vector<Weather> weatherXTime;
+	private Vector <Weather> weatherXTime;
 	
 	/**
 	 * Constructor of @Place class.
