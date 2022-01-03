@@ -71,13 +71,14 @@ public class WriteLocalFile {
 			}
 			
 		};
-		timer.scheduleAtFixedRate(taskCurrent, 0, 3600000*3);
+		timer.scheduleAtFixedRate(taskCurrent, 5640000 , 3600000*3);
 	}
 	
 	
 	/**
 	 * Write on a local file the current informations
-	 * about the Forecast
+	 * about the Forecast on a local file
+	 * @ApiForecast
 	 */
 	public void WriteOnLocalFileForecast() throws WrongFileException{
 		Timer timerForecast = new Timer();

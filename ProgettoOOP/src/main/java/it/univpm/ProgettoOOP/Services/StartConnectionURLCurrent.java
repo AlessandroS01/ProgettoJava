@@ -35,6 +35,11 @@ public class StartConnectionURLCurrent extends StartConnectionURL{
 		super(cityName);
 	}
 	
+	
+	/**
+	 * Open and the start the connection between user and localhost. 
+	 * @return the JSONObject written inside the API.
+	 */
 	public JSONObject startCurrentConnection() {
 		String line = "";
 		JSONObject json = null;
