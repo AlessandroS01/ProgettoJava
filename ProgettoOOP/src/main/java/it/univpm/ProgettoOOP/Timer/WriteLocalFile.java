@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.FileSystems;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -25,8 +26,8 @@ public class WriteLocalFile {
 	private StartConnectionURL5Days connectionForecast ;
 	private FileWriter writer;
 	private BufferedWriter buffWriter;
-	private String path = "C:\\Users\\Lenovo\\git\\repository4\\ProgettoOOP\\src\\main\\resources\\ApiCallsByTime";
-	private String pathForecast = "C:\\Users\\Lenovo\\git\\repository4\\ProgettoOOP\\src\\main\\resources\\ApiForecast";
+	private String path = FileSystems.getDefault().getPath(new String()).toAbsolutePath() + "\\src\\main\\resources\\ApiCallsByTime";
+	private String pathForecast = FileSystems.getDefault().getPath(new String()).toAbsolutePath() + "\\src\\main\\resources\\ApiForecast";
 
 	public WriteLocalFile(String city) {
 		super();

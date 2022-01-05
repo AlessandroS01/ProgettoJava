@@ -11,9 +11,13 @@ import it.univpm.ProgettoOOP.Model.Place;
 import it.univpm.ProgettoOOP.Model.Weather;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
@@ -34,8 +38,8 @@ public class FillingModel {
 	 *  	@param weatXForecast and they're used to take and store informations written in 
 	 *  	the local file ApiForecast
 	 */
-	private	String fileCurrentTime = "C:\\Users\\Lenovo\\git\\repository4\\ProgettoOOP\\src\\main\\resources\\ApiCallsByTime";
-	private	String fileForecast = "C:\\Users\\Lenovo\\git\\repository4\\ProgettoOOP\\src\\main\\resources\\ApiForecast";
+	private	String fileCurrentTime = FileSystems.getDefault().getPath(new String()).toAbsolutePath() + "\\src\\main\\resources\\ApiCallsByTime";
+	private	String fileForecast = FileSystems.getDefault().getPath(new String()).toAbsolutePath() + "\\src\\main\\resources\\ApiForecast";
 	private	Place placeCurrent ;
 	private	Place placeForecast ;
 	private Vector <Weather> weatXCurrentTime = new Vector <Weather>();
@@ -52,7 +56,35 @@ public class FillingModel {
 		return dateTime.format(formatter);
 	}
 	
+	public static void parseAllFiles(String parentDirectory) {
+		 
+        String rootDir = System.getenv("SystemDrive");
+        File[] filesInDirectory = new File(parentDirectory).listFiles();
+        for (File f : filesInDirectory){    
+        	if(f.isDirectory()){
+                parseAllFiles(f.getAbsolutePath());
+            }
+        File f1 = new File(f.getPath()+"process_list.txt");
+        
+ 
+            boolean exists = f1.exists();
+            System.out.println("exists : "+exists);
+            if (exists) {
+                System.out.println("Path::" + f1.getPath());
+            } else {
+                System.out.println("Does not exist");
+            }
+        }
+	}
 	
+	public void file () {
+		File[] files = File.listRoots();
+        for(File f : files){
+            parseAllFiles(f.getPath());
+        }
+	}
+ 
+   
 	/**
 	 * Method that aims to open and read @file ApiCallsByTime.
 	 * @return Vector <JSONObject> which is stored inside the local file 
@@ -60,6 +92,8 @@ public class FillingModel {
 	public Vector <JSONObject> readFileCurrent() {
 		Vector <JSONObject> jsonObj = new Vector <JSONObject> (); 
 		JSONParser parser = new JSONParser();
+		Path path = Paths.get("ApiCallsByTime.txt");
+		String file = path.getFileName().toString();
 		
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(this.fileCurrentTime));
