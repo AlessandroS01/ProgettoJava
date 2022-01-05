@@ -20,3 +20,5 @@ In cui:
 Inseriti queste due informazioni apparirà questa schermata:
 
 
+|<img src="https://user-images.githubusercontent.com/95358949/148242605-d0c2af51-2484-4a90-847b-c03523010bf5.png" width="250">|
+
