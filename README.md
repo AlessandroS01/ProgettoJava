@@ -118,10 +118,29 @@ Esempio schermata:
 
 
 
+# Come funziona:
 
+Il nostro programma presenta diverse rotte:
 
+•"/get/current/{city}", questa rotta presenta una variabile "city" di default (Ancona) e permette di vedere in tempo reale le condizioni meteorologiche della località precedentemente scelta. 
 
+•"/get/forecast/{city}", questa rotta presenta una variabile "city" di default (Ancona) e permette di vedere le condizioni meteorologiche della località in anticipo di 5 giorni. 
 
+•"/writer/3/hours/{city}" questa rotta presenta una variabile "city" di default (Ancona) e carica ogni 3 ore su un file esterno chiamato ApyCallByTime il meteo corrente.
 
+•"/filter/per/hour/{time}" questa rotta funge da filtro e permette all'utente di vedere le condizioni meteorologiche ad un'ora ben precisa.
+
+•"/filter/per/day/{date}" questa rotta funge da filtro e permette all'utente di vedere le condizioni meteorologiche ad una data ben precisa.
+
+•"/difference/speed/" questa rotta permette all'utente di vedere la differenza della velocità del vento tra il meteo corrente e il forecast.
+
+•"/see/statistics/{date}" questa rotta permette all'utente di guardare l'andamento meteorologico di un determinato giorno;
+   •Velocità massima del vento;
+   •Velocità minima del vento;
+   •Temperatura media del vento;
+   
+•"/see/ApiCallsByTime" questa rotta permette di vedere il file su cui è registrato il meteo corrente.
+
+•"/see/ApiForecast" questa rotta permette di vedere il file su cui è registrato il forecast.
 
 
