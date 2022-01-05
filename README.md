@@ -120,17 +120,29 @@ Esempio schermata:
 
 # Come funziona:
 
-Il nostro programma presenta diverse rotte:
+Il nostro programma presenta diverse rotte collocate nella server.port 8083;
 
 •"/get/current/{city}", questa rotta presenta una variabile "city" di default (Ancona) e permette di vedere in tempo reale le condizioni meteorologiche della località precedentemente scelta. 
 
+Per il suo funzionamento abbiamo implementato la classe StartConnectionURLCurrent, la quale legge dall'API il meteo corrente e lo scrive su di un file, nel nostro caso "ApiCallsByTime". 
+
 •"/get/forecast/{city}", questa rotta presenta una variabile "city" di default (Ancona) e permette di vedere le condizioni meteorologiche della località in anticipo di 5 giorni. 
 
-•"/writer/3/hours/{city}" questa rotta presenta una variabile "city" di default (Ancona) e carica ogni 3 ore su un file esterno chiamato ApyCallByTime il meteo corrente.
+Per il suo funzionamento abbiamo implementato la classe StartConnectionURL5Days, la quale legge dall'API il forecast e lo scrive su di un file, nel nostro caso "ApiForecast"
+
+•"/writer/3/hours/{city}" questa rotta presenta una variabile "city" di default (Ancona) e carica ogni 3 ore su un file esterno chiamato ApyCallsByTime il meteo corrente.
+
+Per il suo funzionamento abbiamo implementato la classe WriteLocalFile, che ci permette tramite un timer preimpostato di scrivere sul file ApyCallsByTime ogni 3 ore il tempo corrente.
+
 
 •"/filter/per/hour/{time}" questa rotta funge da filtro e permette all'utente di vedere le condizioni meteorologiche ad un'ora ben precisa.
 
+Grazie alla classe FillingModel, più precisamente grazie al metodo fillPlaceCurrent, possiamo vedere il meteo di un determinato periodo riguardante la città scelta e con la classe  MyFilter possiamo vedere le condizioni meteorologiche di una certa ora.
+
 •"/filter/per/day/{date}" questa rotta funge da filtro e permette all'utente di vedere le condizioni meteorologiche ad una data ben precisa.
+
+Grazie alla classe FillingModel, più precisamente grazie al metodo fillPlaceCurrent, possiamo vedere il meteo di un determinato periodo riguardante la città scelta e con la classe  MyFilter possiamo vedere le condizioni meteorologiche di una certa data.
+
 
 •"/difference/speed/" questa rotta permette all'utente di vedere la differenza della velocità del vento tra il meteo corrente e il forecast.
 
@@ -139,8 +151,22 @@ Il nostro programma presenta diverse rotte:
    •Velocità minima del vento;
    •Temperatura media del vento;
    
-•"/see/ApiCallsByTime" questa rotta permette di vedere il file su cui è registrato il meteo corrente.
+•"/see/ApiCallsByTime" questa rotta permette di vedere il parsing del file su cui è registrato il meteo corrente.
 
-•"/see/ApiForecast" questa rotta permette di vedere il file su cui è registrato il forecast.
+•"/see/ApiForecast" questa rotta permette di vedere il parsing del file su cui è registrato il forecast.
+
+# Classi implementate
+
+
+
+
+
+
+
+
+
+
+
+
 
 
