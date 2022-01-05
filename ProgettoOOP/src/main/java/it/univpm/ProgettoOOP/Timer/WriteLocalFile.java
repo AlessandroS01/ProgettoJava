@@ -27,7 +27,7 @@ public class WriteLocalFile {
 	private FileWriter writer;
 	private BufferedWriter buffWriter;
 	private String path = FileSystems.getDefault().getPath(new String()).toAbsolutePath() + "\\src\\main\\resources\\ApiCallsByTime";
-	private String pathForecast = FileSystems.getDefault().getPath(new String()).toAbsolutePath() + "\\src\\main\\resources\\ApiForecast";
+	private String pathForecast = FileSystems.getDefault().getPath(new String()).toAbsolutePath() + "\\src\\main\\resources\\ApiForecast"; 
 
 	public WriteLocalFile(String city) {
 		super();
