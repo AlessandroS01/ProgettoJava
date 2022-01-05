@@ -33,9 +33,5 @@ Se si usa: "api.openweathermap.org/data/2.5/weather?q={city%20name}&appid={API%2
 
 ![image](https://user-images.githubusercontent.com/94000505/148243276-a1ba8990-dd69-48fa-bf4e-9be80219e895.png)
 
-[forecast.zip](https://github.com/AlessandroS01/ProgettoJava/files/7815962/forecast.zip)
-
-
-
-
+![image](https://user-images.githubusercontent.com/94000505/148245097-75a0211b-2ddf-40d2-a071-3409bc0f8c00.png)
 
