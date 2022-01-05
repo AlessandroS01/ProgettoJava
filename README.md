@@ -22,3 +22,4 @@ Inseriti queste due informazioni apparirà questa schermata:
 
 |<img src="https://user-images.githubusercontent.com/95358949/148242605-d0c2af51-2484-4a90-847b-c03523010bf5.png" width="1000">|
 
+![image](https://user-images.githubusercontent.com/94000505/148243276-a1ba8990-dd69-48fa-bf4e-9be80219e895.png)
