@@ -3,6 +3,7 @@ package it.univpm.ProgettoOOP.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -101,12 +102,12 @@ public class Roots {
 	 * Example : 10:00,PM
 	 */
 	@RequestMapping({"/filter/per/hour/{time}" , "/filter/per/hour/"})
-	public String filteredHour(@PathVariable ( value = "time", required = false )String time) throws HourGivenNotFound, SQLException {
+	public Place filteredHour(@PathVariable ( value = "time", required = false )String time) throws HourGivenNotFound{
 		MyFilter filter = new MyFilter();
 		
-		 if ( filter.filterPerHour(time).getWeatherXTime() != null )
-				return filter.filterPerHour(time).toString();
-		 else throw new HourGivenNotFound( "The time given has no matches");
+		if ( filter.filterPerHour(time).getWeatherXTime().size() != 0 )
+			return filter.filterPerHour(time);
+		else throw new HourGivenNotFound( "The time " + time + " has no matches");
 	}
 	
 	/**
