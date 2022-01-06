@@ -138,11 +138,12 @@ Le 2 rotte citate presentano una variabile String "city" di default (Ancona) e p
 •"/filter/per/hour/{time}" questa rotta funge da filtro e permette all'utente di vedere le condizioni meteorologiche ad un'ora ben precisa.
 
 Grazie alla classe FillingModel che si trova nel Package Statistics, più precisamente grazie al metodo fillPlaceCurrent, possiamo effettuare il Parsing dei JSONObject salvati nel file locale ApiCallsByTime tramite la rotta "/writer/3/hours/{city}" e far stampare le condizioni meteorologiche relative ad un'orario impostato dall'utente. Nell'evenienza che l'utente non metta un orario , questo viene settato di default alle 4:00,PM. L'orario deve essere scritto nel metodo illustrato ( ora:minuti,AM_PM ).
+Se l'orario impostato non esiste allora l'utente avrà restituito 
 
 •"/filter/per/day/{date}" questa rotta funge da filtro e permette all'utente di vedere le condizioni meteorologiche ad una data ben precisa.
 
 Come nel caso di "/filter/per/hour/{time}" , a seguito del parsing effettuato dal metodo fillPlaceCurrent , possiamo far stampare le condizioni meteorologiche relative ad una giornata in cui è stato effettuato il campionamento . Se non viene immesso il parametro time , questo viene settato di default Wednesday,December 29,2021 . La data deve essere scritta nel metodo illustrato ( giorno_della_settimana,mese giorno_del_mese,anno ).
-
+Se l'orario impostato non esiste allora l'utente avrà restituito 
 
 •"/difference/speed/" questa rotta permette all'utente di vedere la differenza della velocità del vento tra il meteo corrente e il forecast.
 
@@ -156,7 +157,14 @@ Come nel caso di "/filter/per/hour/{time}" , a seguito del parsing effettuato da
 
 •"/see/ApiForecast" questa rotta permette di vedere il parsing del file su cui è registrato il forecast.
 
-# Classi implementate
+# Come ottenerlo
+
+
+Clonando questo repository sul vostro computer e importandolo nell'IDE Eclipse avrete accesso al nostro progetto.
+
+Per avviare il programma basta selezionare il package it.univpm.ProgettoOOP e dare il comando Run as -> Spring Boot App. 
+
+Quando apparirà la schermata Springboot sulla propria console allora sarete pronti a partire. Per usufruire dei servizi potete utilizzare il localhost sulla porta 8081 digitando sulla barra di ricerca localhost:8083/"la vostra richiesta".
 
 
 
