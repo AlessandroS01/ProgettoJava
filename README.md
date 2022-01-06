@@ -135,27 +135,29 @@ Per il suo funzionamento abbiamo implementato la classe StartConnectionURL5Days,
 Le 2 rotte citate presentano una variabile String "city" di default (Ancona) e permettono all'utente di salvare in modo automatico le informazioni delle 2 API all'interno di 2 file locali chiamati "ApiCallsByTime" e "ApiForecast". All'interno del primo file vengono salvati i JSONObject ottenuti ogni 3 ore , grazie all'utilizzo di un timer , tramite la rotta "/get/current/{city}". All'interno del secondo file invece viene salvato un solo JSONObject ottenuto tramite la rotta "/get/forecast/{city}". Quindi "/writer/3/hours/{city}" & "/writer/forecast/{city}" sono state utilizzate per salvare le informazioni per poi andare a fare delle statistiche sui campioni ottenuti.
 
 
-•"/filter/per/hour/{time}" questa rotta funge da filtro e permette all'utente di vedere le condizioni meteorologiche ad un'ora ben precisa.
+•"/filter/per/hour/{time}" : funge da filtro e permette all'utente di vedere le condizioni meteorologiche ad un'ora ben precisa.
 
 Grazie alla classe FillingModel che si trova nel Package Statistics, più precisamente grazie al metodo fillPlaceCurrent, possiamo effettuare il Parsing dei JSONObject salvati nel file locale ApiCallsByTime tramite la rotta "/writer/3/hours/{city}" e far stampare le condizioni meteorologiche relative ad un'orario impostato dall'utente. Nell'evenienza che l'utente non metta un orario , questo viene settato di default alle 4:00,PM. L'orario deve essere scritto nel metodo illustrato ( ora:minuti,AM_PM ).
 Se l'orario impostato non esiste allora l'utente avrà restituito 
 
-•"/filter/per/day/{date}" questa rotta funge da filtro e permette all'utente di vedere le condizioni meteorologiche ad una data ben precisa.
+•"/filter/per/day/{date}" : funge da filtro e permette all'utente di vedere le condizioni meteorologiche ad una data ben precisa.
 
 Come nel caso di "/filter/per/hour/{time}" , a seguito del parsing effettuato dal metodo fillPlaceCurrent , possiamo far stampare le condizioni meteorologiche relative ad una giornata in cui è stato effettuato il campionamento . Se non viene immesso il parametro time , questo viene settato di default Wednesday,December 29,2021 . La data deve essere scritta nel metodo illustrato ( giorno_della_settimana,mese giorno_del_mese,anno ).
 Se l'orario impostato non esiste allora l'utente avrà restituito 
 
-•"/difference/speed/" questa rotta permette all'utente di vedere la differenza della velocità del vento tra il meteo corrente e il forecast.
+•"/difference/speed/" : permette all'utente di vedere la differenza della velocità del vento tra il meteo corrente e il forecast.
+
+Attraverso un confronto tra i dati salvati a seguito del campionamento , vengono effettuati dei controlli in base all'orario e alla data contenuti nei JSONObject che situano nei due file di testo locali . Quindi se orario e data sono gli stessi per entrambi gli oggetti dei due file , l'applicazione fornisce come ritorno una Stringa contenente al suo interno le differenze del dato della velocità del vento . Il funzionamento della rotta è reso possibile grazie al metodo differenceSpeedCurrentForecast contenuto nella Classe Stats all'interno del package Statistics.
 
 
-•"/see/statistics/{date}" questa rotta permette all'utente di guardare l'andamento meteorologico di un determinato giorno;
-   •Velocità massima del vento;
-   •Velocità minima del vento;
-   •Temperatura media del vento;
+•"/see/statistics/{date}" : permette all'utente di visualizzare l'andamento meteorologico in un determinato giorno.
+ 
+Come in altri casi precedenti , la rotta può essere modificata dall'utente utilizzando un parametro date . Se date non viene inizializzata , allora assumerà come valore di default "Wednesday,December 29,2021" . Se invece passiamo un valore a date che non trova congruenze con i valori di date all'interno dei file , stamperà una scritta di errore.
+Date è un parametro che deve essere immesso sempre nel metodo : ( giorno_della_settimana,mese giorno_del_mese,anno ).
    
-•"/see/ApiCallsByTime" questa rotta permette di vedere il parsing del file su cui è registrato il meteo corrente.
+•"/see/ApiCallsByTime" : permette di visualizzare il parsing del file ApiCallsByTime su cui è registrato il meteo corrente.
 
-•"/see/ApiForecast" questa rotta permette di vedere il parsing del file su cui è registrato il forecast.
+•"/see/ApiForecast" : permette di vedere il parsing del file ApiForecast su cui è registrato il forecast.
 
 # Come ottenerlo
 
@@ -164,7 +166,7 @@ Clonando questo repository sul vostro computer e importandolo nell'IDE Eclipse a
 
 Per avviare il programma basta selezionare il package it.univpm.ProgettoOOP e dare il comando Run as -> Spring Boot App. 
 
-Quando apparirà la schermata Springboot sulla propria console allora sarete pronti a partire. Per usufruire dei servizi potete utilizzare il localhost sulla porta 8081 digitando sulla barra di ricerca localhost:8083/"la vostra richiesta".
+Quando apparirà la schermata Springboot sulla propria console allora sarete pronti a partire. Per usufruire dei servizi potete utilizzare il localhost sulla porta 8081 digitando sulla barra di ricerca localhost:8081/ROTTA_DESIDERATA.
 
 
 
