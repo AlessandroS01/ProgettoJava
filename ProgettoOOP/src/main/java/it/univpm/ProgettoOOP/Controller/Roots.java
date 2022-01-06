@@ -156,14 +156,14 @@ public class Roots {
 	
 	
 	@GetMapping("/see/ApiCallsByTime")
-	public Place ciao() {
+	public Place seeApiCalls() {
 		FillingModel c= new FillingModel();
 		
 		return c.fillPlaceCurrent();
 	}
 	
 	@GetMapping("/see/ApiForecast")
-	public Place hello() {
+	public Place seeApiForecast() {
 		FillingModel c= new FillingModel();
 		
 		return c.fillPlaceForecast();
