@@ -120,31 +120,32 @@ Esempio schermata:
 
 # Come funziona:
 
-Il nostro programma presenta diverse rotte collocate nella server.port 8083;
+Il nostro programma presenta diverse rotte collocate nella server.port 8081.
 
-•"/get/current/{city}", questa rotta presenta una variabile "city" di default (Ancona) e permette di vedere in tempo reale le condizioni meteorologiche della località precedentemente scelta. 
+• "/get/current/{city}" : questa rotta presenta una variabile "city" di default (Ancona) e permette di vedere in tempo reale le condizioni meteorologiche della località precedentemente scelta. 
 
-Per il suo funzionamento abbiamo implementato la classe StartConnectionURLCurrent, la quale legge dall'API il meteo corrente e lo scrive su di un file, nel nostro caso "ApiCallsByTime". 
+Per il suo funzionamento abbiamo implementato la classe StartConnectionURLCurrent, la quale attraverso un URL richiama l'API. In tal modo le informazioni vengono salvate all'interno di un JSONObject e quest'ultimo può essere stampato a schermo dall'utente tramite la rotta precedentemente scritta.
 
-•"/get/forecast/{city}", questa rotta presenta una variabile "city" di default (Ancona) e permette di vedere le condizioni meteorologiche della località in anticipo di 5 giorni. 
+• "/get/forecast/{city}" : questa rotta presenta una variabile "city" di default (Ancona) e permette di vedere le condizioni meteorologiche della località in anticipo di 5 giorni ogni 3 ore . 
 
-Per il suo funzionamento abbiamo implementato la classe StartConnectionURL5Days, la quale legge dall'API il forecast e lo scrive su di un file, nel nostro caso "ApiForecast"
+Per il suo funzionamento abbiamo implementato la classe StartConnectionURL5Days, la quale attraverso un URL richiama l'API. In tal modo le informazioni vengono salvate all'interno di un JSONObject e quest'ultimo può essere stampato a schermo dall'utente tramite la rotta precedentemente scritta.
 
-•"/writer/3/hours/{city}" questa rotta presenta una variabile "city" di default (Ancona) e carica ogni 3 ore su un file esterno chiamato ApyCallsByTime il meteo corrente.
+• "/writer/3/hours/{city}" & "/writer/forecast/{city}" :
 
-Per il suo funzionamento abbiamo implementato la classe WriteLocalFile, che ci permette tramite un timer preimpostato di scrivere sul file ApyCallsByTime ogni 3 ore il tempo corrente.
+Le 2 rotte citate presentano una variabile String "city" di default (Ancona) e permettono all'utente di salvare in modo automatico le informazioni delle 2 API all'interno di 2 file locali chiamati "ApiCallsByTime" e "ApiForecast". All'interno del primo file vengono salvati i JSONObject ottenuti ogni 3 ore , grazie all'utilizzo di un timer , tramite la rotta "/get/current/{city}". All'interno del secondo file invece viene salvato un solo JSONObject ottenuto tramite la rotta "/get/forecast/{city}". Quindi "/writer/3/hours/{city}" & "/writer/forecast/{city}" sono state utilizzate per salvare le informazioni per poi andare a fare delle statistiche sui campioni ottenuti.
 
 
 •"/filter/per/hour/{time}" questa rotta funge da filtro e permette all'utente di vedere le condizioni meteorologiche ad un'ora ben precisa.
 
-Grazie alla classe FillingModel, più precisamente grazie al metodo fillPlaceCurrent, possiamo vedere il meteo di un determinato periodo riguardante la città scelta e con la classe  MyFilter possiamo vedere le condizioni meteorologiche di una certa ora.
+Grazie alla classe FillingModel che si trova nel Package Statistics, più precisamente grazie al metodo fillPlaceCurrent, possiamo effettuare il Parsing dei JSONObject salvati nel file locale ApiCallsByTime tramite la rotta "/writer/3/hours/{city}" e far stampare le condizioni meteorologiche relative ad un'orario impostato dall'utente. Nell'evenienza che l'utente non metta un orario , questo viene settato di default alle 4:00,PM. L'orario deve essere scritto nel metodo illustrato ( ora:minuti,AM_PM ).
 
 •"/filter/per/day/{date}" questa rotta funge da filtro e permette all'utente di vedere le condizioni meteorologiche ad una data ben precisa.
 
-Grazie alla classe FillingModel, più precisamente grazie al metodo fillPlaceCurrent, possiamo vedere il meteo di un determinato periodo riguardante la città scelta e con la classe  MyFilter possiamo vedere le condizioni meteorologiche di una certa data.
+Come nel caso di "/filter/per/hour/{time}" , a seguito del parsing effettuato dal metodo fillPlaceCurrent , possiamo far stampare le condizioni meteorologiche relative ad una giornata in cui è stato effettuato il campionamento . Se non viene immesso il parametro time , questo viene settato di default Wednesday,December 29,2021 . La data deve essere scritta nel metodo illustrato ( giorno_della_settimana,mese giorno_del_mese,anno ).
 
 
 •"/difference/speed/" questa rotta permette all'utente di vedere la differenza della velocità del vento tra il meteo corrente e il forecast.
+
 
 •"/see/statistics/{date}" questa rotta permette all'utente di guardare l'andamento meteorologico di un determinato giorno;
    •Velocità massima del vento;
