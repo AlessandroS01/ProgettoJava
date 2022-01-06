@@ -63,7 +63,7 @@ public class Stats {
 					speedMax = this.current.get(i).getSpeed();
 				else if ( speedMax < this.current.get(i).getSpeed() )
 					speedMax = this.current.get(i).getSpeed();
-		
+
 		}
 		return speedMax;
 	}
@@ -82,7 +82,7 @@ public class Stats {
 						&&	this.current.get(i).getHours() .equals ( this.forecast.get(y).getHours() ) ) {
 						difference += index + "°) on the date " + this.current.get(i).getDate() 
 								+ " at " + this.current.get(i).getHours() + " the difference between the 2 forecasts is :"
-								+ (this.current.get(i).getSpeed() - this.forecast.get(y).getSpeed() ) + "\n";	
+								+ Math.round( (this.current.get(i).getSpeed() - this.forecast.get(y).getSpeed() ) * 100000d ) / 100000d + "\n";	
 						index++;
 				}
 			}
