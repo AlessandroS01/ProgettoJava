@@ -1,13 +1,25 @@
 package it.univpm.ProgettoOOP.Exception;
 
-public class HourGivenNotFound extends Exception {
+public class HourGivenNotFound extends Throwable {
 	
 	private String error ;
 	private static final long serialVersionUID = 1L;
 
-
-	public HourGivenNotFound(String code) {
+	public HourGivenNotFound() {
 		super();
+		}
+	 public HourGivenNotFound(String message) {
+		 super(message); 
+		 }
+	 public HourGivenNotFound(String message, Throwable cause) { 
+		 super(message, cause);
+		 }
+	 public HourGivenNotFound(Throwable cause) { 
+		 super(cause); 
+		 }
+/*
+	public HourGivenNotFound(String code) {
+		super("The time given has no matches");
 		this.setError(code);
 	}
 	
@@ -26,7 +38,7 @@ public class HourGivenNotFound extends Exception {
 		this.error = error;
 	}
 	
-	
+	*/
 	
 	
 }

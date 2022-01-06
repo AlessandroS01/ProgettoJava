@@ -101,13 +101,27 @@ public class Roots {
 	 * Example : 10:00,PM
 	 */
 	@RequestMapping({"/filter/per/hour/{time}" , "/filter/per/hour/"})
-	public String filteredHour(@PathVariable ( value = "time", required = false )String time) throws HourGivenNotFound, SQLException {
+	public Place filteredHour(@PathVariable ( value = "time", required = false )String time) throws HourGivenNotFound {
 		MyFilter filter = new MyFilter();
+		try {
+		if ( filter.filterPerHour(time).getWeatherXTime().size() != 0 )
+			
+		return filter.filterPerHour(time);
+				
+		else  
+		    	throw new HourGivenNotFound("The time given has no matches");
+		}
+		catch (HourGivenNotFound e) {
+			throw new HourGivenNotFound("The time given has no matches");
+		}
+			
+			
 		
-		 if ( filter.filterPerHour(time).getWeatherXTime() != null )
-				return filter.filterPerHour(time).toString();
+		 /*
 		 else throw new HourGivenNotFound( "The time given has no matches");
+		 */
 	}
+	
 	
 	/**
 	 * This is a root in which the user can choose the weather during the day 
