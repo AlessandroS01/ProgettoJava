@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.univpm.ProgettoOOP.Exception.HourGivenNotFound;
 import it.univpm.ProgettoOOP.Exception.WrongFileException;
 import it.univpm.ProgettoOOP.Filter.MyFilter;
 import it.univpm.ProgettoOOP.Model.Place;
@@ -25,6 +26,7 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.Vector;
 
 import org.json.simple.*;
@@ -99,12 +101,12 @@ public class Roots {
 	 * Example : 10:00,PM
 	 */
 	@RequestMapping({"/filter/per/hour/{time}" , "/filter/per/hour/"})
-	public Place filteredHour(@PathVariable ( value = "time", required = false )String time) {
+	public String filteredHour(@PathVariable ( value = "time", required = false )String time) throws HourGivenNotFound, SQLException {
 		MyFilter filter = new MyFilter();
 		
-		if ( filter.filterPerHour(time) != null )
-			return filter.filterPerHour(time);
-		else return null;
+		 if ( filter.filterPerHour(time).getWeatherXTime() != null )
+				return filter.filterPerHour(time).toString();
+		 else throw new HourGivenNotFound( "The time given has no matches");
 	}
 	
 	/**
