@@ -102,13 +102,21 @@ public class Roots {
 	 * Example : 10:00,PM
 	 */
 	@RequestMapping({"/filter/per/hour/{time}" , "/filter/per/hour/"})
-	public Place filteredHour(@PathVariable ( value = "time", required = false )String time) throws HourGivenNotFound{
+	public Place filteredHour(@PathVariable ( value = "time", required = false )String time) throws HourGivenNotFound {
 		MyFilter filter = new MyFilter();
-		
+		try {
 		if ( filter.filterPerHour(time).getWeatherXTime().size() != 0 )
-			return filter.filterPerHour(time);
-		else throw new HourGivenNotFound( "The time " + time + " has no matches");
+			
+		return filter.filterPerHour(time);
+				
+		else  
+		    	throw new HourGivenNotFound("The time given has no matches");
+		}
+		catch (HourGivenNotFound e) {
+			throw new HourGivenNotFound("The time given has no matches");
+		}
 	}
+	
 	
 	/**
 	 * This is a root in which the user can choose the weather during the day 
@@ -147,8 +155,22 @@ public class Roots {
 	 */
 	@RequestMapping({ "/see/statistics/{date}" , "/see/statistics/" })
 	public String seeStatistics( @PathVariable ( value = "date", required = false )String date ) {
-		
+
 		if (date == null ) date = "Wednesday,December 29,2021";
+		
+		boolean[] control = { true,true,true,true,true,true };
+		if ( !date.equals("Wednesday,December 29,2021") ) control[0] = false ;
+		if ( !date.equals("Thursday,December 30,2021") ) control[1] = false ;
+		if ( !date.equals("Friday,December 31,2021") ) control[2] = false ;
+		if ( !date.equals("Saturday,January 1,2022") ) control[3] = false ;
+		if ( !date.equals("Sunday,January 2,2022") ) control[4] = false ;
+		if ( !date.equals("Monday,January 3,2022") ) control[5] = false ;
+		int i = 0;
+		while ( !control[i] ) {
+			if (i == 5 ) return "The are no matches with the data given";
+			i++;
+		}
+			
 		Stats statistics = new Stats();
 		return "During the " + date + " the average wind degree of the wind was :" 
 				+ statistics.getAverageDegree(date) + "°.\n"
