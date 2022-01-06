@@ -132,7 +132,7 @@ Per il suo funzionamento abbiamo implementato la classe StartConnectionURL5Days,
 
 • "/writer/3/hours/{city}" & "/writer/forecast/{city}" :
 
-Le 2 rotte citate presentano una variabile String "city" di default (Ancona) e permettono all'utente di salvare in modo automatico le informazioni delle 2 API all'interno di 2 file locali chiamati "ApiCallsByTime" e "ApiForecast". All'interno del primo file vengono salvati i JSONObject ottenuti ogni 3 ore , grazie all'utilizzo di un timer , tramite la rotta "/get/current/{city}". All'interno del secondo file invece viene salvato un solo JSONObject ottenuto tramite la rotta "/get/forecast/{city}". Quindi "/writer/3/hours/{city}" & "/writer/forecast/{city}" sono state utilizzate per andare a fare delle statistiche sui campioni ottenuti.
+Le 2 rotte citate presentano una variabile String "city" di default (Ancona) e permettono all'utente di salvare in modo automatico le informazioni delle 2 API all'interno di 2 file locali chiamati "ApiCallsByTime" e "ApiForecast". All'interno del primo file vengono salvati i JSONObject ottenuti ogni 3 ore , grazie all'utilizzo di un timer , tramite la rotta "/get/current/{city}". All'interno del secondo file invece viene salvato un solo JSONObject ottenuto tramite la rotta "/get/forecast/{city}". Quindi "/writer/3/hours/{city}" & "/writer/forecast/{city}" sono state utilizzate per salvare le informazioni per poi andare a fare delle statistiche sui campioni ottenuti.
 
 
 •"/filter/per/hour/{time}" questa rotta funge da filtro e permette all'utente di vedere le condizioni meteorologiche ad un'ora ben precisa.
