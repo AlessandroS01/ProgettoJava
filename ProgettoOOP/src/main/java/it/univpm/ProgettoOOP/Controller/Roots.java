@@ -153,7 +153,7 @@ public class Roots {
 	 * @return a String containing those statistics.
 	 */
 	@RequestMapping({ "/see/statistics/{date}" , "/see/statistics/" })
-	public String seeStatistics( @PathVariable ( value = "date", required = false )String date ) {
+	public String seeStatistics( @PathVariable ( value = "date", required = false )String date ) throws DayGivenNotFound {
 
 		if (date == null ) date = "Wednesday,December 29,2021";
 		
@@ -166,15 +166,12 @@ public class Roots {
 		if ( !date.equals("Monday,January 3,2022") ) control[5] = false ;
 		int i = 0;
 		while ( !control[i] ) {
-			if (i == 5 ) return "The are no matches with the data given";
+			if (i == 5 ) throw new DayGivenNotFound("During the day given there weren't samplings");
 			i++;
 		}
 			
 		Stats statistics = new Stats();
-		return "During the " + date + " the average wind degree of the wind was :" 
-				+ statistics.getAverageDegree(date) + "°.\n"
-				+ "Furthermore the max speed registered was : " +statistics.getMaxSpeedXDay(date) +"\n"
-				+ "Instead the min speed registered was : " + statistics.getMinSpeedXDay(date);
+		return statistics.getStats(date);
 		
 	}
 	

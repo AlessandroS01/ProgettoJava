@@ -91,5 +91,13 @@ public class Stats {
 				+ "Instead if the difference is positive , it means that 5 days forecast understimated the forecast of the speed." ;
 		return difference;
 	}
-
+	
+	public String getStats(String date) {
+		Stats stats = new Stats();
+		
+		return "During the " + date + " the average wind degree of the wind was :" 
+				+ stats.getAverageDegree(date) + "°.\n"
+				+ "Furthermore the max speed registered was : " +stats.getMaxSpeedXDay(date) +"\n"
+				+ "Instead the min speed registered was : " + stats.getMinSpeedXDay(date);
+	}
 }
