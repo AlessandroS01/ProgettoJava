@@ -7,10 +7,6 @@ import java.net.URI;
 
 import org.json.simple.*;
 
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Request.Builder;
-import com.squareup.okhttp.Response;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.http.HttpClient;

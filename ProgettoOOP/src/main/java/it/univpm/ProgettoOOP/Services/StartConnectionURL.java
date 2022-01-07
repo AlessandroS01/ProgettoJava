@@ -9,8 +9,6 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import org.json.simple.*;
 
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Response;
 
 
 
