@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.univpm.ProgettoOOP.Exception.DayGivenNotFound;
 import it.univpm.ProgettoOOP.Exception.HourGivenNotFound;
 import it.univpm.ProgettoOOP.Exception.WrongFileException;
 import it.univpm.ProgettoOOP.Filter.MyFilter;
@@ -65,12 +66,12 @@ public class Roots {
 	 * as @return
 	 */
 	@RequestMapping ( {"/writer/3/hours/{city}" , "/writer/3/hours/" })
-	public String writer( @PathVariable ( value = "city" , required = false ) String city ) {
+	public String writer( @PathVariable ( value = "city" , required = false ) String city ) throws WrongFileException {
 		WriteLocalFile write = new WriteLocalFile( city);
 		try {
 			write.WriteOnLocalFile3Hours();
 		} catch (WrongFileException e) {
-			return e.sendMessage();
+			throw new WrongFileException("The path of the file can not be found");
 		}
 		return "Caricamento completato";
 	}
@@ -83,12 +84,12 @@ public class Roots {
 	 * as @return
 	 */
 	@RequestMapping ({ "/writer/forecast/{city}" , "/writer/forecast/" })
-	public String writerForecast( @PathVariable ( value = "city" , required = false ) String city ) {
+	public String writerForecast( @PathVariable ( value = "city" , required = false ) String city ) throws WrongFileException {
 		WriteLocalFile write = new WriteLocalFile( city);
 		try {
 			write.WriteOnLocalFileForecast();
 		} catch (WrongFileException e) {
-			return e.sendMessage();
+			throw new WrongFileException("The path of the file can not be found");
 		}
 		return "Caricamento completato";
 	}
@@ -104,17 +105,13 @@ public class Roots {
 	@RequestMapping({"/filter/per/hour/{time}" , "/filter/per/hour/"})
 	public Place filteredHour(@PathVariable ( value = "time", required = false )String time) throws HourGivenNotFound {
 		MyFilter filter = new MyFilter();
-		try {
+		
 		if ( filter.filterPerHour(time).getWeatherXTime().size() != 0 )
-			
-		return filter.filterPerHour(time);
+			return filter.filterPerHour(time);
 				
 		else  
-		    	throw new HourGivenNotFound("The time given has no matches");
-		}
-		catch (HourGivenNotFound e) {
 			throw new HourGivenNotFound("The time given has no matches");
-		}
+		
 	}
 	
 	
@@ -127,12 +124,14 @@ public class Roots {
 	 * Example : Saturday,January 1,2022
 	 */
 	@RequestMapping({"/filter/per/day/{date}" , "/filter/per/day/"})
-	public Place filteredDay(@PathVariable ( value = "date", required = false )String date) {
+	public Place filteredDay(@PathVariable ( value = "date", required = false )String date) throws DayGivenNotFound {
 		MyFilter filter = new MyFilter();
 		
-		if( filter.filterPerDay(date) != null )
+		if( filter.filterPerDay(date).getWeatherXTime().size() != 0 )
 			return filter.filterPerDay(date);
-		else return null;
+
+		else 
+			throw new DayGivenNotFound("The day given has no matches");
 	}
 	
 	/**

@@ -1,4 +1,4 @@
 /**
- * Package Exception : generates a new Exception.
+ * Package Exception : generates new Exceptions .
  */
 package it.univpm.ProgettoOOP.Exception;
