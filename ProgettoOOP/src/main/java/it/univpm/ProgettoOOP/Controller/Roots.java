@@ -157,6 +157,7 @@ public class Roots {
 
 		if (date == null ) date = "Wednesday,December 29,2021";
 		
+		// search if date is equals to the dates stored in the local file.
 		boolean[] control = { true,true,true,true,true,true };
 		if ( !date.equals("Wednesday,December 29,2021") ) control[0] = false ;
 		if ( !date.equals("Thursday,December 30,2021") ) control[1] = false ;
