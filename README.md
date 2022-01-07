@@ -138,12 +138,12 @@ Le 2 rotte citate presentano una variabile String "city" di default (Ancona) e p
 •"/filter/per/hour/{time}" : funge da filtro e permette all'utente di vedere le condizioni meteorologiche ad un'ora ben precisa.
 
 Grazie alla classe FillingModel che si trova nel Package Statistics, più precisamente grazie al metodo fillPlaceCurrent, possiamo effettuare il Parsing dei JSONObject salvati nel file locale ApiCallsByTime tramite la rotta "/writer/3/hours/{city}" e far stampare le condizioni meteorologiche relative ad un'orario impostato dall'utente. Nell'evenienza che l'utente non metta un orario , questo viene settato di default alle 4:00,PM. L'orario deve essere scritto nel metodo illustrato ( ora:minuti,AM_PM ).
-Se l'orario impostato non esiste allora l'utente avrà restituito 
+Se l'orario impostato non esiste allora all'utente avrà restituito un messaggio di errore ottenuto tramite un'eccezzione personalizzata.
 
 •"/filter/per/day/{date}" : funge da filtro e permette all'utente di vedere le condizioni meteorologiche ad una data ben precisa.
 
 Come nel caso di "/filter/per/hour/{time}" , a seguito del parsing effettuato dal metodo fillPlaceCurrent , possiamo far stampare le condizioni meteorologiche relative ad una giornata in cui è stato effettuato il campionamento . Se non viene immesso il parametro time , questo viene settato di default Wednesday,December 29,2021 . La data deve essere scritta nel metodo illustrato ( giorno_della_settimana,mese giorno_del_mese,anno ).
-Se l'orario impostato non esiste allora l'utente avrà restituito 
+Se la data impostata non esiste allora all'utente avrà restituito un messaggio di errore ottenuto tramite un'eccezzione personalizzata.
 
 •"/difference/speed/" : permette all'utente di vedere la differenza della velocità del vento tra il meteo corrente e il forecast.
 
@@ -154,10 +154,17 @@ Attraverso un confronto tra i dati salvati a seguito del campionamento , vengono
  
 Come in altri casi precedenti , la rotta può essere modificata dall'utente utilizzando un parametro date . Se date non viene inizializzata , allora assumerà come valore di default "Wednesday,December 29,2021" . Se invece passiamo un valore a date che non trova congruenze con i valori di date all'interno dei file , stamperà una scritta di errore.
 Date è un parametro che deve essere immesso sempre nel metodo : ( giorno_della_settimana,mese giorno_del_mese,anno ).
+Se la data impostata non esiste allora all'utente avrà restituito un messaggio di errore ottenuto tramite un'eccezzione personalizzata.
+
    
 •"/see/ApiCallsByTime" : permette di visualizzare il parsing del file ApiCallsByTime su cui è registrato il meteo corrente.
 
 •"/see/ApiForecast" : permette di vedere il parsing del file ApiForecast su cui è registrato il forecast.
+
+
+
+
+
 
 # Come ottenerlo
 
