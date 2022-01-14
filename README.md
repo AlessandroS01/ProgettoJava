@@ -9,28 +9,25 @@ abbiamo creato questo progetto che dà l'opportunità di visualizzare:
  
  •differenza tra il forecast e l'attuale dei valori del vento nel periodo e nella località indicati;
  
- •prevesioni meteoroliche  di una città a propria scelta;
+ •prevesioni meteoroligiche  di una città a propria scelta;
  
  •file al cui interno sono contenuti i dati dei precedenti campionamenti e che vengono continuamente aggiornati in base alle chiamate all'API.
  
-I nostri campionamenti sono stati effettuati dal 29 dicembre (16:00) al  3 gennaio (13:00) e riguardano solamente la città di Ancona;
+I nostri campionamenti , ottenuti tramite le due API sotto scritte , sono stati effettuati dal 29 dicembre (16:00) al 3 gennaio (13:00) e riguardano solamente la città di Ancona;
+                  
+• api.openweathermap.org/data/2.5/forecast?q={city%20name}&appid={API%20key} : per ottenere dati riguardo al meteo ogni 3 ore per 5 giorni.
 
-Tramite l'utilizzo di due API:
-                          
-• api.openweathermap.org/data/2.5/forecast?q={city%20name}&appid={API%20key}
+• api.openweathermap.org/data/2.5/weather?q={city%20name}&appid={API%20key} : per ottenere dati riguardo al meteo all'istante in cui avviene la chiamata.
 
-• api.openweathermap.org/data/2.5/weather?q={city%20name}&appid={API%20key}
+All'interno di entrambe le API troviamo :
 
-In cui:
+• city name : nome della città di cui si vuole andare ad ottenere i dati ;
 
-• city name è il nome della città selezionata;
-
-• API key è il codice di accesso al servizio;
+• API key : il codice di accesso al servizio.
 
 Esempio schermata:
 
 ![image](https://user-images.githubusercontent.com/94000505/148247759-ef46803b-2322-4c9e-905a-f819e17b401a.png)
-
 
 •coord
 
@@ -147,23 +144,19 @@ Se la data impostata non esiste allora all'utente avrà restituito un messaggio 
 
 •"/difference/speed/" : permette all'utente di vedere la differenza della velocità del vento tra il meteo corrente e il forecast.
 
-Attraverso un confronto tra i dati salvati a seguito del campionamento , vengono effettuati dei controlli in base all'orario e alla data contenuti nei JSONObject che situano nei due file di testo locali . Quindi se orario e data sono gli stessi per entrambi gli oggetti dei due file , l'applicazione fornisce come ritorno una Stringa contenente al suo interno le differenze del dato della velocità del vento . Il funzionamento della rotta è reso possibile grazie al metodo differenceSpeedCurrentForecast contenuto nella Classe Stats all'interno del package Statistics.
+Attraverso un confronto tra i dati salvati a seguito del campionamento , vengono effettuati dei controlli in base all'orario e alla data contenuti nei JSONObject che situano nei due file di testo locali . Quindi se orario e data sono gli stessi per entrambi gli oggetti dei due file , l'applicazione fornisce come ritorno una Stringa contenente al suo interno le differenze del dato relativo alla velocità del vento . Il funzionamento della rotta è reso possibile grazie al metodo differenceSpeedCurrentForecast contenuto nella Classe Stats all'interno del package Statistics.
 
 
 •"/see/statistics/{date}" : permette all'utente di visualizzare l'andamento meteorologico in un determinato giorno.
  
 Come in altri casi precedenti , la rotta può essere modificata dall'utente utilizzando un parametro date . Se date non viene inizializzata , allora assumerà come valore di default "Wednesday,December 29,2021" . Se invece passiamo un valore a date che non trova congruenze con i valori di date all'interno dei file , stamperà una scritta di errore.
-Date è un parametro che deve essere immesso sempre nel metodo : ( giorno_della_settimana,mese giorno_del_mese,anno ).
-Se la data impostata non esiste allora all'utente avrà restituito un messaggio di errore ottenuto tramite un'eccezzione personalizzata.
+Date è un parametro che deve essere immesso sempre nel metodo seguente : ( giorno_della_settimana,mese giorno_del_mese,anno ).
+Se la data impostata non esiste o risulta sbagliata allora all'utente verrà restituito un messaggio di errore ottenuto tramite un'eccezzione personalizzata.
 
    
 •"/see/ApiCallsByTime" : permette di visualizzare il parsing del file ApiCallsByTime su cui è registrato il meteo corrente.
 
 •"/see/ApiForecast" : permette di vedere il parsing del file ApiForecast su cui è registrato il forecast.
-
-
-
-
 
 
 # Come ottenerlo
