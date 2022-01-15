@@ -8,9 +8,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+/**
+ * @Class used to create Exception
+ *
+ */
 @ControllerAdvice
 public class ApiHandlerException {
 	
+	/**
+	 * @return an Exception of HourGivenNotFound
+	 */
 	@ExceptionHandler ( value = {HourGivenNotFound.class})
 	public ResponseEntity <Object> handleHourGiven( HourGivenNotFound e){
 		
@@ -23,6 +30,9 @@ public class ApiHandlerException {
 		return new ResponseEntity<>( rootsException , badRequest);
 	}
 	
+	/**
+	 * @return an Exception of HourGivenNotFound
+	 */
 	@ExceptionHandler ( value = {DayGivenNotFound.class})
 	public ResponseEntity <Object> handleDayGiven( DayGivenNotFound e){
 		
@@ -35,6 +45,9 @@ public class ApiHandlerException {
 		return new ResponseEntity<>( rootsException , badRequest);
 	}
 	
+	/**
+	 * @return an Exception of HourGivenNotFound
+	 */
 	@ExceptionHandler ( value = {WrongFileException.class})
 	public ResponseEntity <Object> handleDayGiven( WrongFileException e){
 		

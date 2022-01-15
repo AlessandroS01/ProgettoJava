@@ -7,6 +7,10 @@ import org.junit.jupiter.api.Test;
 
 class RootsTest {
 
+	/**
+	 * This method controls if the roots (written below) 
+	 * work properly.
+	 */
 	@Test
 	void test() {
 		Roots root = new Roots();

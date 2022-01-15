@@ -11,9 +11,13 @@ import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import it.univpm.ProgettoOOP.Model.Place;
 class FillingModelTest {
-   public FillingModel modelIntoJson = new FillingModel();
+	
+	public FillingModel modelIntoJson = new FillingModel();
 	public Place place;
 
+	/**
+	 * This method is used to keep an eye on the automatic writer of the local file ApiCallsByTime.
+	 */
 	@Test
 	void test() {
 		this.place = modelIntoJson.fillPlaceForecast(); 

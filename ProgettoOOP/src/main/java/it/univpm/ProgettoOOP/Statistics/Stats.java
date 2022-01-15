@@ -12,6 +12,9 @@ import it.univpm.ProgettoOOP.Model.Wind;
 import it.univpm.ProgettoOOP.Services.StartConnectionURL5Days;
 import it.univpm.ProgettoOOP.Services.StartConnectionURLCurrent;
 
+/**
+ ** Class used to make stats based on the sampling.
+ */
 public class Stats {
 		
 	private Vector<Weather> current = new Vector<Weather>();
@@ -23,7 +26,11 @@ public class Stats {
 		this.current = c.fillWeatXCurrentTime();
 		this.forecast = c.fillWeatForecast();
 	}
-
+	
+	/**
+	 * @param date
+	 * @return the avarage WindDegree registered during the date given
+	 */
 	public long getAverageDegree(String date ) {
 	
 		long somma = 0;
@@ -37,7 +44,11 @@ public class Stats {
 		return somma/i ;
 	}
 
-
+	/**
+	 * 
+	 * @param date
+	 * @return the the min WindSpeed registered during the date given
+	 */
 	public double getMinSpeedXDay (String date) {
 		
 		double speedMin = 0;
@@ -52,7 +63,11 @@ public class Stats {
 		return speedMin;
 	}
 
-
+	/**
+	 * 
+	 * @param date
+	 * @return the the max WindSpeed registered during the date given
+	 */
 	public double getMaxSpeedXDay (String date) {
 		double speedMax = 0;
 	
@@ -70,7 +85,10 @@ public class Stats {
 
 	
 	
-	
+	/**
+	 * 
+	 * @return a String containing the difference of the WindSpeed between the 2 local files. 
+	 */
 	public String differenceSpeedCurrentForecast() {
 	
 		String difference = "Here are the differences of the speed found between Current and Forecast API calls : \n";
@@ -92,6 +110,14 @@ public class Stats {
 		return difference;
 	}
 	
+	/**
+	 * 
+	 * @param date
+	 * @return a String that contains the information taken from the @method :
+	 * 		1) getAverageDegree(date) ;
+	 * 		2) getMaxSpeedXDay(date) ;
+	 * 		3) getMinSpeedXDay(date) ;
+	 */
 	public String getStats(String date) {
 		Stats stats = new Stats();
 		

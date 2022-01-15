@@ -4,6 +4,10 @@ import java.time.ZonedDateTime;
 
 import org.springframework.http.HttpStatus;
 
+/**
+ * @Class used in @class ApiHandlerException inside every @ExceptionHandler 
+ * for generate new Exceptions.
+ */
 public class RootsException {
 	
 	private final String message;
@@ -22,8 +26,5 @@ public class RootsException {
 	public HttpStatus getHttpStatus() {
 		return httpStatus;
 	}
-
-
-	
 	
 }
