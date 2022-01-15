@@ -3,7 +3,7 @@
 # Introduzione 
 La nostra applicazione è un RESTful Web Service che comunicando tramite HTTP, utilizzando Postman , dà la possibilità agli utenti di usufruire delle rotte messe a disposizione.
 
-abbiamo creato questo progetto che dà l'opportunità di visualizzare:  
+Il progetto dà l'opportunità di visualizzare:  
 
  •statistiche riguardanti i valori minimi, massimi, media e varianza della velocità e angolatura del vento nel periodo e nella località indicati; 
  
@@ -158,6 +158,13 @@ Se la data impostata non esiste o risulta sbagliata allora all'utente verrà res
 
 •"/see/ApiForecast" : permette di vedere il parsing del file ApiForecast su cui è registrato il forecast.
 
+# Test
+
+All'interno del programma sono stati implementati 2 test :
+
+i) serve a capire se la rotta "/writer/3/hours/{city}" & "/writer/forecast/{city}" funziona in modo corretto .
+
+ii) serve a capire se il contenuto all'interno del file ApiCallsByTime risulta "danneggiato" o incompleto .
 
 # Come ottenerlo
 
