@@ -177,7 +177,11 @@ Quando apparirà la schermata Springboot sulla propria console allora sarete pro
 
 
 
+# Divisione del lavoro
 
+-Seghini Alessandro : creazione delle rotte , della chiamata all'API , del parsing dei JSONObject e delle eccezioni . 
+
+-Manuel Mulloni : creazione dei test , del Model , delle statistiche e dei filtri . 
 
 
 
