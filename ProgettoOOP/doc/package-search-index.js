@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"it.univpm.ProgettoOOP.Controller"},{"l":"it.univpm.ProgettoOOP.Exception"},{"l":"it.univpm.ProgettoOOP.Filter"},{"l":"it.univpm.ProgettoOOP.Model"},{"l":"it.univpm.ProgettoOOP.Services"},{"l":"it.univpm.ProgettoOOP.Statistics"},{"l":"it.univpm.ProgettoOOP.Timer"}]
